@@ -1,0 +1,98 @@
+import React, { ReactNode } from "react";
+import logo from "@/assets/iSabiBook.png";
+import logoIcon from "@/assets/image.png";
+import img1 from "@/assets/Ellipse 21.png";
+import img2 from "@/assets/Ellipse 22.png";
+import img3 from "@/assets/Ellipse 23.png";
+import img4 from "@/assets/Ellipse 24@2x.png";
+
+import google from "@/assets/google.svg";
+import apple from "@/assets/apple.svg";
+import { MdNoFlash } from "react-icons/md";
+import { Button } from "@/components/ui/button";
+import { GrCheckmark } from "react-icons/gr";;
+
+const gains = [
+  "Access content anywhere",
+  "Learn from qualified and accredited tutors",
+  "Comprehensive learning experience",
+  "Access content anywhere",
+];
+
+const AuthLayout = ({
+  children,
+  style,
+  title,
+}: {
+  children: ReactNode;
+  style?: string;
+  title: string;
+}) => {
+  return (
+    <div className={`${style} min-h-screen w-full pt-28`}>
+      <div className="flex items-start w-[70%] mx-auto  justify-between pl-28 ">
+        <div className="w-[40%]">
+          <div className="flex gap-3 items-center">
+            <img src={logoIcon} alt="logo" className="w-9" />
+            <img src={logo} alt="logo" className="w-40" />
+          </div>
+          <div className={` mt-16`}>
+            <div className="flex xl:flex-col flex-row justify-center xl:gap-0 gap-32 xl:items-start items-center">
+              <div className="flex flex-col gap-10">
+                <h1 className="lg:text-8xl text-6xl font-bold">{title}</h1>
+                <p className="md:text-2xl text-xl max-w-[350px]">
+                  Join a network of over 500 students for collaboration and
+                  motivation
+                </p>
+              </div>
+              <div className="flex bg-gray-200 w-fit p-2 rounded-full mt-12">
+                <img src={img4} alt="student" className="w-16" />
+                <img src={img2} alt="student" className="w-16" />
+                <img src={img1} alt="student" className="w-16" />
+                <img src={img3} alt="student" className="w-16" />
+                <div className="bg-white rounded-full flex items-center justify-center h-16 w-16">
+                  <span className="font-semibold md:text-xl text-lg">+23</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col xl:items-start items-center gap-5 mt-16">
+              <h4 className="font-bold md:text-2xl text-xl header-text0">
+                What you stand to get;
+              </h4>
+              <ul className="flex items-start flex-col gap-2 text md:text-xl text-lg mt-1">
+                {gains.map((item, idx) => (
+                  <li key={idx} className="flex gap-4">
+                    <GrCheckmark />{item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="xl:w-[50%] w-full -mt-10">
+          <div className={`bg-grayLight w-[100%] rounded-3xl drop-shadow-md shadow-lg p-3`}>
+            {children}
+          </div>
+          {title.toLowerCase() === "sign up" && (
+            <div className=" flex justify-between items-center gap-10 mt-10 w-[100%]">
+              <Button className="w-full h-16 rounded-3xl bg-grayLight text-foreground font-semibold gap-3" variant="ghost">
+                <span>
+                <img src={google} />
+                </span>
+                <span>Register with Google</span>
+              </Button>
+              <Button className="w-full h-16 rounded-3xl bg-grayLight text-foreground font-semibold gap-3" variant="ghost">
+                <span>
+                 <img src={apple} alt="apple icon" />
+                </span>
+                <span>Register with Apple</span>
+              </Button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AuthLayout;
