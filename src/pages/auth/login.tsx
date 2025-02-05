@@ -20,39 +20,25 @@ import { useNavigate } from "react-router-dom";
 import LoadingState from "./components/loadingState";
 
 const formSchema = z.object({
-  fullName: z.string().min(2, {
-    message: "Full name must be at least 2 characters.",
-  }),
   email: z.string().email({
     message: "Invalid email address",
   }),
   password: z.string().min(6, {
     message: "Password must be at least 6 characters.",
   }),
-  confirmPassword: z.string().min(6, {
-    message: "Confirm password must be at least 6 characters.",
-  }),
-}).superRefine((values, ctx) => {
-  if (values.confirmPassword !== values.password) {
-    ctx.addIssue({
-      code: "custom",
-      message: "Passwords don't match",
-      path: ["confirmPassword"],
-    });
-  }
+ 
 });
 
 
-const SignUp = () => {
+const SignIn = () => {
 
   const navigate = useNavigate()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fullName: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
@@ -64,17 +50,15 @@ const SignUp = () => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      navigate("/otp")
+      navigate("/")
     }, 3000);
     
 
   }
 
   const [focusState, setFocusState] = useState({
-    fullName: false,
     email: false,
     password: false,
-    confirmPassword: false,
   });
 
   const handleFocus = (field: string) => {
@@ -84,7 +68,7 @@ const SignUp = () => {
     }));
   };
 
-  type FormFieldNames = "fullName" | "email" | "password" | "confirmPassword";
+  type FormFieldNames = "email" | "password";
 
   const handleBlur = (field: FormFieldNames) => {
     setFocusState((prev) => ({
@@ -95,47 +79,20 @@ const SignUp = () => {
 
 
   return (
-    <AuthLayout setOpen={setLoading} loadingMessage="Siging up, Please wait..." loading={loading} progress={1} title="Sign up">
+    <AuthLayout  setOpen={setLoading} loadingMessage="Loading your account, Please wait..." loading={loading} progress={1} title="Sign in">
       <div>
         <div className="w-full bg-white rounded-3xl p-10">
-          <div className="flex items-center gap-2 w-[90%] mx-auto">
-            {[1, 2, 3].map((_, idx) => (
-              <div key={idx} 
-                className={`${idx === 0 && "bg-primary"} w-[33.3%] bg-gray-300 h-[4px] rounded-4xl`}
-              ></div>
-            ))}
-          </div>
           <h1
             className="md:text-5xl text-2xl font-bold"
             style={{ marginTop: 30, marginLeft: 20, marginBottom: 30 }}
           >
-            Sign up
+            Enter Details
           </h1>
 
           {/* Form */}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="fullName"
-                render={({ field }) => (
-                  <FormItem className=" relative">
-                    <FormLabel className={`absolute bg-white w-fit p-2 left-10 -top-3 text-gray-500 ${focusState.fullName ? "block" : "hidden"}`}>
-                      Full Name
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder={focusState.fullName ? "" : "Full Name"}
-                        onFocus={() => handleFocus("fullName")}
-                        onBlur={() => handleBlur("fullName")}
-                        className="h-16 rounded-3xl text-gray-500 placeholder:text-gray-500 font-medium placeholder:font-semibold"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+             
               <FormField
                 control={form.control}
                 name="email"
@@ -179,46 +136,27 @@ const SignUp = () => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="confirmPassword"
-                render={({ field }) => (
-                  <FormItem className=" relative">
-                    <FormLabel className={`absolute bg-white w-fit p-2 left-10 -top-3 text-gray-500 ${focusState.confirmPassword ? "block" : "hidden"}`}>
-                      Confirm Password
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        type="password"
-                        placeholder={focusState.confirmPassword ? "" : "Confirm Password"}
-                        onFocus={() => handleFocus("confirmPassword")}
-                        onBlur={() => handleBlur("confirmPassword")}
-                        className="h-16 rounded-3xl text-gray-500 placeholder:text-gray-500 font-medium placeholder:font-semibold"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <Button type="submit" className="w-full flex flex-row-reverse items-center gap-2 h-16 rounded-full justify-between hover:bg-primary/80">
                 <span className="bg-white w-[3.8rem] h-[3.8rem] rounded-full flex items-center justify-center -mr-3"><MdArrowOutward  className="text-primary" /></span>
-                <span className="ml-5 font-bold text-lg">Create an iSabiBook account</span>
+                <span className="ml-5 font-bold text-lg">Login to your iSabiBook account</span>
               </Button>
             </form>
           </Form>
         </div>
         
-        <div className="pt-6 pl-16 pb-5 flex items-center gap-3">
-          <h4 className="font-semibold text-foreground text-lg">Already have an account? </h4>
-          <a className="text-primary hover:text-primary/80 font-semibold text-lg" href="/login">
-            Sign in
-          </a>
-          <MdArrowOutward className="text-primary text-xl" />
+        <div className="pt-6 px-16 pb-5 flex items-center justify-between text-xl">
+            <h1 className="text-primary font-semibold ">reset password</h1>
+          <div className="flex items-center gap-3">
+            <h4 className="font-semibold text-foreground">Don't have an account? </h4>
+            <a className="text-primary hover:text-primary/80 font-semibold text-lg" href="/">
+                Sign up
+            </a>
+            <MdArrowOutward className="text-primary text-xl" />
+          </div>
         </div>
       </div>
     </AuthLayout>
   );
 };
 
-export default SignUp;
+export default SignIn;

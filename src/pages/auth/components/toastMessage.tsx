@@ -3,8 +3,17 @@ import star from "@/assets/star1.png";
 import pattern from "@/assets/pattern4.png";
 import { Button } from '@/components/ui/button';
 import { GrClose } from 'react-icons/gr';
+import { useNavigate } from 'react-router-dom';
 
 const ToastMessage = ({ loadingMessage, setOpen, title }: {setOpen: Dispatch<SetStateAction<boolean>>, loadingMessage: string, title: string }) => {
+
+  const navigate = useNavigate()
+  const handleAction = () => {
+    if(title.toLowerCase() === "registered"){
+      navigate("/login")
+    }
+    
+  }
   return (
    <div className='fixed inset-0 flex items-center justify-center bg-black/20 w-[90%] m-auto z-50'>
      <div className="fixed w-[400px] h-[150px] bg-white rounded-3xl shadow-lg drop-shadow-md p-4 z-50 right-36 bottom-10">
@@ -16,7 +25,7 @@ const ToastMessage = ({ loadingMessage, setOpen, title }: {setOpen: Dispatch<Set
           <h1 className="font-semibold text-3xl">{title}</h1>
           <p className=" text-gray-500 tracking-wider mt-2 text-xl font-medium">{loadingMessage}</p>
         </div>
-        <Button className="mt-12 p-6 rounded-full">
+        <Button onClick={handleAction} className="mt-12 p-6 rounded-full">
             {title.toLowerCase() === "registered" ? "Sign into iSabiBook" : "Open Mail"}
         </Button>
           </div>

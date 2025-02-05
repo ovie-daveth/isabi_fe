@@ -99,7 +99,7 @@ const AuthLayout = ({
           <div className={`bg-grayLight w-[100%] rounded-3xl drop-shadow-md shadow-lg p-3`}>
             {children}
           </div>
-          {title.toLowerCase() === "sign up" && progress === 1 && (
+          {(title.toLowerCase() === "sign up" && progress === 1) || (title.toLowerCase() === "sign in" ) && (
             <div className=" flex justify-between items-center gap-10 mt-10 w-[100%]">
               <Button className="w-full h-16 rounded-3xl bg-grayLight text-foreground font-semibold gap-3" variant="ghost">
                 <span>
