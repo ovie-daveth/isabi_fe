@@ -16,6 +16,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
+import LoadingState from "./components/loadingState";
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
@@ -29,12 +31,21 @@ const formSchema = z.object({
   }),
   confirmPassword: z.string().min(6, {
     message: "Confirm password must be at least 6 characters.",
-  }).refine((val: any, ctx: { parent: { password: any; }; }) => val === ctx.parent.password, {
-    message: "Passwords don't match",
   }),
+}).superRefine((values, ctx) => {
+  if (values.confirmPassword !== values.password) {
+    ctx.addIssue({
+      code: "custom",
+      message: "Passwords don't match",
+      path: ["confirmPassword"],
+    });
+  }
 });
 
+
 const SignUp = () => {
+
+  const navigate = useNavigate()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,11 +56,18 @@ const SignUp = () => {
     },
   });
 
+  const [loading, setLoading] = useState(false)
+
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    console.log("form", values);
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      navigate("/otp")
+    }, 3000);
+    
+
   }
 
   const [focusState, setFocusState] = useState({
@@ -66,20 +84,23 @@ const SignUp = () => {
     }));
   };
 
-  const handleBlur = (field: string) => {
+  type FormFieldNames = "fullName" | "email" | "password" | "confirmPassword";
+
+  const handleBlur = (field: FormFieldNames) => {
     setFocusState((prev) => ({
       ...prev,
-      [field]: prev[field] && !!form.getValues(field), // Keep label visible if there is value
+      [field]: prev[field] && !!form.getValues(field), // Keep label visible if there is a value
     }));
-  };
+};
+
 
   return (
-    <AuthLayout title="Sign up">
+    <AuthLayout setOpen={setLoading} loadingMessage="siging up, please wait..." loading={loading} progress={1} title="Sign up">
       <div>
         <div className="w-full bg-white rounded-3xl p-10">
           <div className="flex items-center gap-2 w-[90%] mx-auto">
             {[1, 2, 3].map((_, idx) => (
-              <div
+              <div key={idx} 
                 className={`${idx === 0 && "bg-primary"} w-[33.3%] bg-gray-300 h-[4px] rounded-4xl`}
               ></div>
             ))}
@@ -187,6 +208,7 @@ const SignUp = () => {
             </form>
           </Form>
         </div>
+        
         <div className="pt-6 pl-16 pb-5 flex items-center gap-3">
           <h4 className="font-semibold text-foreground text-lg">Already have an account? </h4>
           <a className="text-primary hover:text-primary/80 font-semibold text-lg" href="">

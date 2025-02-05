@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { Dispatch, ReactNode, SetStateAction } from "react";
 import logo from "@/assets/iSabiBook.png";
 import logoIcon from "@/assets/image.png";
 import img1 from "@/assets/Ellipse 21.png";
@@ -6,11 +6,15 @@ import img2 from "@/assets/Ellipse 22.png";
 import img3 from "@/assets/Ellipse 23.png";
 import img4 from "@/assets/Ellipse 24@2x.png";
 
+import BG from "@/assets/BG.png";
+
 import google from "@/assets/google.svg";
 import apple from "@/assets/apple.svg";
 import { MdNoFlash } from "react-icons/md";
 import { Button } from "@/components/ui/button";
-import { GrCheckmark } from "react-icons/gr";;
+import { GrCheckmark } from "react-icons/gr";import LoadingState from "./components/loadingState";
+import ToastMessage from "./components/toastMessage";
+;
 
 const gains = [
   "Access content anywhere",
@@ -23,13 +27,35 @@ const AuthLayout = ({
   children,
   style,
   title,
+  progress,
+  loading,
+  loadingMessage,
+  setOpen,
+  toastMessage,
+  setOpenToast,
+  openToast,
+  toastTitle
 }: {
   children: ReactNode;
   style?: string;
   title: string;
+  progress: number
+  loading: boolean,
+  loadingMessage?: string
+  toastMessage?: string
+  toastTitle?: string
+  openToast?: boolean
+  setOpenToast?: Dispatch<SetStateAction<boolean>>
+  setOpen: Dispatch<SetStateAction<boolean>>
 }) => {
   return (
     <div className={`${style} min-h-screen w-full pt-28`}>
+      {
+          loading && <LoadingState setOpen={setOpen} loadingMessage={loadingMessage} />
+      }
+      {
+        openToast && <ToastMessage title={toastTitle} setOpen={setOpenToast} loadingMessage={toastMessage} />
+      }
       <div className="flex items-start w-[70%] mx-auto  justify-between pl-28 ">
         <div className="w-[40%]">
           <div className="flex gap-3 items-center">
@@ -37,7 +63,7 @@ const AuthLayout = ({
             <img src={logo} alt="logo" className="w-40" />
           </div>
           <div className={` mt-16`}>
-            <div className="flex xl:flex-col flex-row justify-center xl:gap-0 gap-32 xl:items-start items-center">
+            <div className="flex flex-col justify-center items-start ">
               <div className="flex flex-col gap-10">
                 <h1 className="lg:text-8xl text-6xl font-bold">{title}</h1>
                 <p className="md:text-2xl text-xl max-w-[350px]">
@@ -73,7 +99,7 @@ const AuthLayout = ({
           <div className={`bg-grayLight w-[100%] rounded-3xl drop-shadow-md shadow-lg p-3`}>
             {children}
           </div>
-          {title.toLowerCase() === "sign up" && (
+          {title.toLowerCase() === "sign up" && progress === 1 && (
             <div className=" flex justify-between items-center gap-10 mt-10 w-[100%]">
               <Button className="w-full h-16 rounded-3xl bg-grayLight text-foreground font-semibold gap-3" variant="ghost">
                 <span>
@@ -89,6 +115,13 @@ const AuthLayout = ({
               </Button>
             </div>
           )}
+          {
+             title.toLowerCase() === "sign up" && progress === 2 && (
+              <div className="mt-10">
+                <img src={BG} alt="" />
+              </div>
+             )
+          }
         </div>
       </div>
     </div>
