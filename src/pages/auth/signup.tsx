@@ -57,6 +57,7 @@ const SignUp = () => {
   });
 
   const [loading, setLoading] = useState(false)
+  const [openToast, setOpenToast] = useState(false)
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -64,7 +65,7 @@ const SignUp = () => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      navigate("/otp")
+      setOpenToast(true)
     }, 3000);
     
 
@@ -95,7 +96,7 @@ const SignUp = () => {
 
 
   return (
-    <AuthLayout setOpen={setLoading} loadingMessage="Siging up, Please wait..." loading={loading} progress={1} title="Sign up">
+    <AuthLayout setOpenToast={setOpenToast} openToast={openToast} toastTitle="OTP Sent" toastMessage="Verification OTP was sent" setOpen={setLoading} loadingMessage="Siging up, Please wait..." loading={loading} progress={1} title="Sign up">
       <div>
         <div className="w-full bg-white rounded-3xl p-10">
           <div className="flex items-center gap-2 w-[90%] mx-auto">

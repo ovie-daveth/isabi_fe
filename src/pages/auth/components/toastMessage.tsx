@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import star from "@/assets/star1.png";
 import pattern from "@/assets/pattern4.png";
 import { Button } from '@/components/ui/button';
 import { GrClose } from 'react-icons/gr';
@@ -11,6 +10,15 @@ const ToastMessage = ({ loadingMessage, setOpen, title }: {setOpen: Dispatch<Set
   const handleAction = () => {
     if(title.toLowerCase() === "registered"){
       navigate("/login")
+    } else if (title.toLowerCase() === "otp sent"){
+      navigate("/otp")
+      setOpen(false)
+    } else if (title.toLowerCase() === "new password set"){
+      navigate("/login")
+      setOpen(false)
+    } else if (title.toLowerCase() === "reset otp sent"){
+      navigate("/reset-otp")
+      setOpen(false)
     }
     
   }
@@ -26,7 +34,7 @@ const ToastMessage = ({ loadingMessage, setOpen, title }: {setOpen: Dispatch<Set
           <p className=" text-gray-500 tracking-wider mt-2 text-xl font-medium">{loadingMessage}</p>
         </div>
         <Button onClick={handleAction} className="mt-12 p-6 rounded-full">
-            {title.toLowerCase() === "registered" ? "Sign into iSabiBook" : "Open Mail"}
+            {title.toLowerCase() === "registered" ? "Sign into iSabiBook" : title.toLowerCase() === "otp sent" ? "Open Mail" : title.toLowerCase() === "new password set" ? "Verify and continue" : "Open Mail"}
         </Button>
           </div>
         <img src={pattern} alt="pattern" className="absolute bottom-0 right-0" />

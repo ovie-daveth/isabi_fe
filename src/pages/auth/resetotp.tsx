@@ -1,4 +1,3 @@
-import AuthLayout from "./authlayout";
 import { MdArrowOutward } from "react-icons/md";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -15,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import ResetLayout from "./resetLayout";
 
 const formSchema = z.object({
   otp: z.string().min(6, {
@@ -22,7 +22,7 @@ const formSchema = z.object({
   }),
 });
 
-const OTPpage = () => {
+const ResetOTPpage = () => {
   const navigate = useNavigate()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -45,10 +45,13 @@ const OTPpage = () => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      navigate("/test-questions")
+      navigate("/new-password")
     }, 3000);
   }
 
+//   useEffect(() => {
+//     setOpenToast(true)
+//   }, [])
 
   const [focusState, setFocusState] = useState({
     otp: false,
@@ -84,7 +87,7 @@ const OTPpage = () => {
   };
 
   return (
-    <AuthLayout setOpenToast={setOpenToast} openToast={openToast} toastTitle="OTP Sent" toastMessage="Verification OTP was sent" setOpen={setLoading} loadingMessage="Verifiying OTP, please wait..." loading={loading}  progress={2} title="Sign up">
+    <ResetLayout setOpenToast={setOpenToast} openToast={openToast} toastTitle="OTP Sent" toastMessage="Verification OTP was sent" setOpen={setLoading} loadingMessage="Verifiying OTP, please wait..." loading={loading} >
       <div>
         <div className="w-full bg-white rounded-3xl p-10">
           <div className="flex items-center gap-2 w-[90%] mx-auto">
@@ -147,8 +150,8 @@ const OTPpage = () => {
           <MdArrowOutward className="text-primary text-xl" />
         </div>
       </div>
-    </AuthLayout>
+    </ResetLayout>
   );
 };
 
-export default OTPpage;
+export default ResetOTPpage;
