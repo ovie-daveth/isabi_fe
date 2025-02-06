@@ -120,7 +120,7 @@ const OTPpage = () => {
                         placeholder={focusState.otp ? "" : "Enter Code"}
                         onFocus={() => handleFocus("otp")}
                         onBlur={() => handleBlur("otp")}
-                        className="h-16 rounded-3xl text-gray-800 text-3xl placeholder:text-gray-500 font-bold placeholder:font-semibold"
+                        className="h-16 rounded-3xl text-gray-800 lg:text-3xl text-xl placeholder:text-gray-500 font-bold placeholder:font-semibold"
                       />
                     </FormControl>
                     <FormMessage />

@@ -18,13 +18,13 @@ const LoadingState = ({ loadingMessage, setOpen }: {setOpen: Dispatch<SetStateAc
   }, [])
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/20 w-[90%] m-auto z-50">
-      <div className="xl:w-[30%] md:w-[70%] w-[80%] h-[290px] bg-white rounded-3xl shadow-lg drop-shadow-md p-4 text-center z-50 relative">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/20 lg:w-[90%] m-auto z-50">
+      <div className="xl:w-[30%] md:w-[70%] w-[80%] lg:h-[290px] h-[250px] bg-white rounded-3xl shadow-lg drop-shadow-md p-4 text-center z-50 relative">
         <img src={pathename === "/signup" ? star : pathename === "/otp" ? star : pathename === "/login"  ? star2 : pathename === "/new-password" ? star  : spiral} alt="star" className=" absolute top-2 left-0 w-24" />
         <Button onClick={() => setOpen(false)} className="absolute right-4 top-3 bg-gray-300 h-16 w-16 flex items-center justify-center text-primary rounded-full hover:bg-gray-200">
             <GrClose className="text-xl" />
         </Button>
-        <div className="mt-20 flex items-center flex-col">
+        <div className="lg:mt-20 mt-10 flex items-center flex-col">
         <img src={loader} alt="loader" />
           <div className="-mt-10">
           <h1 className="font-semibold text-5xl">Processing...</h1>
