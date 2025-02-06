@@ -142,7 +142,7 @@ const SignIn = () => {
           </Form>
         </div>
         
-        <div className="pt-6 px-16 pb-5 flex items-center justify-between text-xl">
+        <div className="pt-6 xl:px-16 px-5 pb-5 flex items-center justify-between xl:text-xl">
             <Link to="/reset-password" className="text-primary font-semibold capitalize ">reset password</Link>
           <div className="flex items-center gap-3">
             <h4 className="font-semibold text-foreground">Don't have an account? </h4>

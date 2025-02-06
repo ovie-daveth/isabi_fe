@@ -46,22 +46,22 @@ const TestQuestion = () => {
           <div>
             <div className="border-2 border-grayLight rounded-full h-fit p-2 flex items-center justify-start gap-5">
               <img src={q2} alt="q1" />
-              <p className="text-xl">Why minimalism works for modern portfolios</p>
+              <p className="text-start lg:text-lg xl:text-xl break-words whitespace-normal">Why minimalism works for modern portfolios</p>
             </div>
 
            <div className="mt-12 w-full">
               <form onSubmit={handleSubmit} className="w-full flex-col flex gap-3">
                 <Button type="button" onClick={() => handleSelectAnswer(1)} variant="ghost" className={`border-2 border-grayLight rounded-full h-fit p-2 flex items-center justify-start gap-5 w-full ${isActive === 1 && "bg-grayLight"}`}>
                   <img src={q1} alt="q2" />
-                  <p className="text-xl">Why minimalism works for modern portfolios</p>
+                  <p className="text-start lg:text-lg xl:text-xl break-words whitespace-normal">Why minimalism works for modern portfolios</p>
                 </Button>
                 <Button type="button" onClick={() => handleSelectAnswer(2)} variant="ghost" className={`border-2 border-grayLight rounded-full h-fit p-2 flex items-center justify-start gap-5 w-full ${isActive === 2 && "bg-grayLight"}`}>
                   <img src={q1} alt="q2" />
-                  <p className="text-xl">Why minimalism works for modern portfolios</p>
+                  <p className="text-start lg:text-lg xl:text-xl break-words whitespace-normal">Why minimalism works for modern portfolios</p>
                 </Button>
                 <Button type="button" onClick={() => handleSelectAnswer(3)} variant="ghost" className={`border-2 border-grayLight rounded-full h-fit p-2 flex items-center justify-start gap-5 w-full ${isActive === 3 && "bg-grayLight"}`}>
                   <img src={q1} alt="q2" />
-                  <p className="text-xl">Why minimalism works for modern portfolios</p>
+                  <p className="text-start lg:text-lg xl:text-xl break-words whitespace-normal">Why minimalism works for modern portfolios</p>
                 </Button>
                 <Button type="submit" className="mt-10 w-full flex flex-row-reverse items-center gap-2 h-16 rounded-full justify-between hover:bg-primary/80">
                 <span className="bg-white w-[3.8rem] h-[3.8rem] rounded-full flex items-center justify-center -mr-3"><MdArrowOutward  className="text-primary" /></span>

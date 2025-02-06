@@ -56,8 +56,8 @@ const AuthLayout = ({
       {
         openToast && <ToastMessage title={toastTitle} setOpen={setOpenToast} loadingMessage={toastMessage} />
       }
-      <div className="flex items-start w-[70%] mx-auto  justify-between pl-28 ">
-        <div className="w-[40%]">
+      <div className="flex items-start xl:w-[70%] mx-auto justify-between xl:pl-28 lg:px-0 md:w-[90%] w-full md:px-0 px-5 flex-col md:flex-row ">
+        <div className="xl:w-[40%] lg:w-[55%] md:w-[50%] ">
           <div className="flex gap-3 items-center">
             <img src={logoIcon} alt="logo" className="w-9" />
             <img src={logo} alt="logo" className="w-40" />
@@ -65,7 +65,7 @@ const AuthLayout = ({
           <div className={` mt-16`}>
             <div className="flex flex-col justify-center items-start ">
               <div className="flex flex-col gap-10">
-                <h1 className="lg:text-8xl text-6xl font-bold">{title}</h1>
+                <h1 className="md:text-8xl text-6xl font-bold">{title}</h1>
                 <p className="md:text-2xl text-xl max-w-[350px]">
                   Join a network of over 500 students for collaboration and
                   motivation
@@ -77,15 +77,15 @@ const AuthLayout = ({
                 <img src={img1} alt="student" className="w-16" />
                 <img src={img3} alt="student" className="w-16" />
                 <div className="bg-white rounded-full flex items-center justify-center h-16 w-16">
-                  <span className="font-semibold md:text-xl text-lg">+23</span>
+                  <span className="font-semibold md:text-xl text-md">+23</span>
                 </div>
               </div>
             </div>
-            <div className="flex flex-col xl:items-start items-center gap-5 mt-16">
+            <div className="flex flex-col gap-5 mt-16">
               <h4 className="font-bold md:text-2xl text-xl header-text0">
                 What you stand to get;
               </h4>
-              <ul className="flex items-start flex-col gap-2 text md:text-xl text-lg mt-1">
+              <ul className="flex items-start flex-col gap-2 text md:text-xl text-md mt-1">
                 {gains.map((item, idx) => (
                   <li key={idx} className="flex gap-4">
                     <GrCheckmark />{item}
@@ -95,8 +95,8 @@ const AuthLayout = ({
             </div>
           </div>
         </div>
-        <div className="xl:w-[50%] w-full -mt-10">
-          <div className={`bg-grayLight w-[100%] rounded-3xl drop-shadow-md shadow-lg p-3`}>
+        <div className="xl:w-[50%] lg:w-[45%] md:w-[55%] w-full lg:-mt-10 mt-10">
+          <div className={`bg-grayLight w-[100%] rounded-3xl drop-shadow-md shadow-md p-3`}>
             {children}
           </div>
           {(title.toLowerCase() === "sign up" && progress === 1) || (title.toLowerCase() === "sign in" ) && (

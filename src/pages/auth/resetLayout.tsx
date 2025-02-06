@@ -40,8 +40,8 @@ const ResetLayout = ({
       {
         openToast && <ToastMessage title={toastTitle} setOpen={setOpenToast} loadingMessage={toastMessage} />
       }
-      <div className="flex items-start w-[70%] mx-auto  justify-between pl-28 ">
-        <div className="w-[40%]">
+      <div className="flex items-start xl:w-[70%] mx-auto justify-between xl:pl-28 lg:px-0 md:w-[90%] w-full md:px-0 px-5 flex-col md:flex-row ">
+        <div className="xl:w-[40%] lg:w-[55%] md:w-[50%] ">
           <div className="flex gap-3 items-center">
             <img src={logoIcon} alt="logo" className="w-9" />
             <img src={logo} alt="logo" className="w-40" />
@@ -63,7 +63,7 @@ const ResetLayout = ({
             </div>
           </div>
         </div>
-        <div className="xl:w-[50%] w-full -mt-10">
+        <div className="xl:w-[50%] lg:w-[45%] md:w-[55%] w-full md:-mt-10 mt-10">
           <div className={`bg-grayLight w-[100%] rounded-3xl drop-shadow-md shadow-lg p-3`}>
             {children}
           </div>
