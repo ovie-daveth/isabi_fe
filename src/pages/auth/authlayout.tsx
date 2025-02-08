@@ -1,6 +1,4 @@
 import React, { Dispatch, ReactNode, SetStateAction } from "react";
-import logo from "@/assets/iSabiBook.png";
-import logoIcon from "@/assets/image.png";
 import img1 from "@/assets/Ellipse 21.png";
 import img2 from "@/assets/Ellipse 22.png";
 import img3 from "@/assets/Ellipse 23.png";
@@ -14,6 +12,7 @@ import { MdNoFlash } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import { GrCheckmark } from "react-icons/gr";import LoadingState from "./components/loadingState";
 import ToastMessage from "./components/toastMessage";
+import Logo from "@/components/atoms/logo";
 ;
 
 const gains = [
@@ -58,10 +57,7 @@ const AuthLayout = ({
       }
       <div className="flex items-start xl:w-[70%] mx-auto justify-between xl:pl-28 lg:px-0 md:w-[90%] w-full md:px-0 px-5 flex-col md:flex-row ">
         <div className="xl:w-[40%] lg:w-[55%] md:w-[50%] ">
-          <div className="flex gap-3 items-center">
-            <img src={logoIcon} alt="logo" className="w-9" />
-            <img src={logo} alt="logo" className="w-40" />
-          </div>
+          <Logo />
           <div className={` mt-16`}>
             <div className="flex flex-col justify-center items-start ">
               <div className="flex flex-col gap-10">

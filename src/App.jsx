@@ -6,18 +6,24 @@ import TestQuestion from './pages/auth/testQ';
 import ResetPassword from './pages/auth/resetpassword';
 import ResetOTPpage from './pages/auth/resetotp';
 import NewPassword from './pages/auth/new-password';
+import LandingPage from './pages/landing/page';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/signup" replace />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/otp" element={<OTPpage />} />
-      <Route path="/test-questions" element={<TestQuestion />} />
-      <Route path="/login" element={<SignIn />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/reset-otp" element={<ResetOTPpage />} />
-      <Route path="/new-password" element={<NewPassword />} />
+      <Route path="/" element={<LandingPage />} />
+
+
+
+      {/* AUTH */}
+
+      <Route path="/auth/signup" element={<SignUp />} />
+      <Route path="/auth/otp" element={<OTPpage />} />
+      <Route path="/auth/test-questions" element={<TestQuestion />} />
+      <Route path="/auth/login" element={<SignIn />} />
+      <Route path="/auth/reset-password" element={<ResetPassword />} />
+      <Route path="/auth/reset-otp" element={<ResetOTPpage />} />
+      <Route path="/auth/new-password" element={<NewPassword />} />
     </Routes>
   );
 }

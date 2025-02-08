@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ResetLayout from "./resetLayout";
+import CustomButton from "@/components/atoms/button";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -115,16 +116,14 @@ const ResetPassword = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full flex flex-row-reverse items-center gap-2 h-16 rounded-full justify-between hover:bg-primary/80">
-                <span className="bg-white w-[3.8rem] h-[3.8rem] rounded-full flex items-center justify-center -mr-3"><MdArrowOutward  className="text-primary" /></span>
-                <span className="ml-5 font-bold text-lg">Send me reset OTP</span>
-              </Button>
+              <CustomButton title="Send me reset OTP" variant="primary" />
+
             </form>
           </Form>
         </div>
           <div className="pt-6 px-16 pb-5 text-xl flex items-center gap-3">
             <h4 className="font-semibold text-foreground">Remember Password? </h4>
-            <a className="text-primary hover:text-primary/80 font-semibold text-lg" href="/login">
+            <a className="text-primary hover:text-primary/80 font-semibold text-lg" href="/auth/login">
                 Sign in
             </a>
             <MdArrowOutward className="text-primary text-xl" />

@@ -18,6 +18,7 @@ import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import LoadingState from "./components/loadingState";
+import CustomButton from "@/components/atoms/button";
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
@@ -202,17 +203,15 @@ const SignUp = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full flex flex-row-reverse items-center gap-2 h-16 rounded-full justify-between hover:bg-primary/80">
-                <span className="bg-white w-[3.8rem] h-[3.8rem] rounded-full flex items-center justify-center -mr-3"><MdArrowOutward  className="text-primary" /></span>
-                <span className="ml-5 font-bold text-lg">Create an iSabiBook account</span>
-              </Button>
+              <CustomButton title="Create an iSabiBook account" variant="primary" />
+
             </form>
           </Form>
         </div>
         
         <div className="pt-6 pl-16 pb-5 flex items-center gap-3">
           <h4 className="font-semibold text-foreground text-lg">Already have an account? </h4>
-          <a className="text-primary hover:text-primary/80 font-semibold text-lg" href="/login">
+          <a className="text-primary hover:text-primary/80 font-semibold text-lg" href="/auth/login">
             Sign in
           </a>
           <MdArrowOutward className="text-primary text-xl" />

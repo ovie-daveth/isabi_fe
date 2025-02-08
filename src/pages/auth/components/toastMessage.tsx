@@ -9,15 +9,15 @@ const ToastMessage = ({ loadingMessage, setOpen, title }: {setOpen: Dispatch<Set
   const navigate = useNavigate()
   const handleAction = () => {
     if(title.toLowerCase() === "registered"){
-      navigate("/login")
+      navigate("/auth/login")
     } else if (title.toLowerCase() === "otp sent"){
-      navigate("/otp")
+      navigate("/auth/otp")
       setOpen(false)
     } else if (title.toLowerCase() === "new password set"){
-      navigate("/login")
+      navigate("/auth/login")
       setOpen(false)
     } else if (title.toLowerCase() === "reset otp sent"){
-      navigate("/reset-otp")
+      navigate("/auth/reset-otp")
       setOpen(false)
     }
     

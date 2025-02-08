@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import CustomButton from "@/components/atoms/button";
 
 const formSchema = z.object({
   otp: z.string().min(6, {
@@ -45,7 +46,7 @@ const OTPpage = () => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      navigate("/test-questions")
+      navigate("/auth/test-questions")
     }, 3000);
   }
 
@@ -127,15 +128,7 @@ const OTPpage = () => {
                   </FormItem>
                 )}
               />
-              <Button
-                type="submit"
-                className="w-full flex flex-row-reverse items-center gap-2 h-16 rounded-full justify-between hover:bg-primary/80"
-              >
-                <span className="bg-white w-[3.8rem] h-[3.8rem] rounded-full flex items-center justify-center -mr-3">
-                  <MdArrowOutward className="text-primary" />
-                </span>
-                <span className="ml-5 font-bold text-lg">Verify and Continue</span>
-              </Button>
+              <CustomButton title="Verify and Continue" variant="primary" />
             </form>
           </Form>
         </div>

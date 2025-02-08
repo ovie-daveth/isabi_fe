@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import {Link} from "react-router-dom"
 import { useNavigate } from "react-router-dom";
+import CustomButton from "@/components/atoms/button";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -134,19 +135,16 @@ const SignIn = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full flex flex-row-reverse items-center gap-2 h-16 rounded-full justify-between hover:bg-primary/80">
-                <span className="bg-white w-[3.8rem] h-[3.8rem] rounded-full flex items-center justify-center -mr-3"><MdArrowOutward  className="text-primary" /></span>
-                <span className="ml-5 font-bold text-lg">Login to your iSabiBook account</span>
-              </Button>
+              <CustomButton title="Login to your iSabiBook account" variant="primary" />
             </form>
           </Form>
         </div>
         
         <div className="pt-6 xl:px-16 px-5 pb-5 flex items-center justify-between xl:text-xl">
-            <Link to="/reset-password" className="text-primary font-semibold capitalize ">reset password</Link>
+            <Link to="/auth/reset-password" className="text-primary font-semibold capitalize ">reset password</Link>
           <div className="flex items-center gap-3">
             <h4 className="font-semibold text-foreground">Don't have an account? </h4>
-            <a className="text-primary hover:text-primary/80 font-semibold text-lg" href="/signup">
+            <a className="text-primary hover:text-primary/80 font-semibold text-lg" href="/auth/signup">
                 Sign up
             </a>
             <MdArrowOutward className="text-primary text-xl" />
