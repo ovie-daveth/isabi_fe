@@ -19,10 +19,14 @@ import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import LoadingState from "./components/loadingState";
 import CustomButton from "@/components/atoms/button";
+import { AuthService } from "@/api/auth";
+import { AuthResponse, SignUpRequest } from "@/variables/auth";
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
     message: "Full name must be at least 2 characters.",
+  }).refine((name) => name.includes(" "), {
+    message: "Full name must include both last name and first name (LastName First).",
   }),
   email: z.string().email({
     message: "Invalid email address",
@@ -47,6 +51,8 @@ const formSchema = z.object({
 const SignUp = () => {
 
   const navigate = useNavigate()
+  const authService = new AuthService();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -61,16 +67,39 @@ const SignUp = () => {
   const [openToast, setOpenToast] = useState(false)
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("form", values);
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      setOpenToast(true)
-    }, 3000);
-    
-
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true);
+  
+    // Split full name into firstName (second part) and lastName (first part)
+    const [lastName, ...firstNameArr] = values.fullName.trim().split(" ");
+    const firstName = firstNameArr.join(" "); // Handles multi-word first names
+  
+    if (!firstName) {
+      form.setError("fullName", { type: "manual", message: "Both first and last names are required." });
+      setLoading(false);
+      return;
+    }
+  
+    const request: SignUpRequest = {
+      firstName,
+      lastName,
+      email: values.email,
+      password: values.password,
+    };
+  
+    try {
+      const response = await authService.SignUpUsers(request);
+      if (response) {
+        console.log(response as AuthResponse);
+        setLoading(false);
+        setOpenToast(true);
+      }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
   }
+  
 
   const [focusState, setFocusState] = useState({
     fullName: false,

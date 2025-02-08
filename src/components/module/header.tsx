@@ -48,7 +48,7 @@ const Header = () => {
 
   
   return (
-    <div className='flex items-center justify-between'>
+    <div className='flex items-center justify-between z-50'>
       <div>
         <Logo />
       </div>
@@ -64,7 +64,7 @@ const Header = () => {
           ))
         }
       </div>
-      <div className="block lg:hidden">
+      <div className="block lg:hidden z-50">
       <button
         onClick={() => setOpenMenu(!openMenu)}
         className="flex items-center border-b border-primary py-2"
