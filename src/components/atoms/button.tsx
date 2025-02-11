@@ -8,10 +8,11 @@ type ButtonProps = {
   title: string;  // Use children to pass the content inside the button
   classnames?: string;
   variant: "primary" | "secondary";
-  isIcon?: boolean
+  isIcon?: boolean,
+  fn?: () => void;
 };
 
-const CustomButton = ({ isIcon, title, classnames = "", variant }: ButtonProps) => {
+const CustomButton = ({ isIcon, title, classnames = "", variant, fn }: ButtonProps) => {
 
   // Conditional styles based on variant
   const buttonClassNames = classNames(
@@ -22,7 +23,7 @@ const CustomButton = ({ isIcon, title, classnames = "", variant }: ButtonProps) 
     classnames // Add any extra class names passed via props
   );
 
-  return  <Button type="submit" className={cn(`w-full flex flex-row-reverse items-center sm:gap-5 sm:h-16 h-12 rounded-full ${!isIcon ? "justify-between" : "justify-center"} ${buttonClassNames}`)}>
+  return  <Button onClick={fn} type={fn ? "button" : "submit"} className={cn(`w-full flex flex-row-reverse items-center sm:gap-5 sm:h-16 h-12 rounded-full ${!isIcon ? "justify-between" : "justify-center"} ${buttonClassNames}`)}>
     {
       !isIcon &&  <span className={`bg-white sm:w-[3.8rem] sm:h-[3.8rem] h-[3rem] w-[3rem] rounded-full flex items-center justify-center -mr-3`}>
       <MdArrowOutward  className={`text-primary`} />

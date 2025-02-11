@@ -2,7 +2,7 @@ import React from "react";
 
 const LearningSolutions: React.FC = () => {
   return (
-    <div className="flex flex-col items-center lg:px-16 mt-24 w-full max-md:px-5 max-md:mt-10 max-md:max-w-full">
+    <div className="flex flex-col items-center lg:px-16 mt-24 lg:mb-40 w-full max-md:px-5 max-md:mt-10 max-md:max-w-full">
       <div className="flex gap-3 items-center self-start ml-4 text-base font-medium leading-snug text-zinc-600 max-md:ml-2.5">
         <img
           loading="lazy"

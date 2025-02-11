@@ -36,7 +36,7 @@ const featuresData = [
 const Features: React.FC = () => {
   return (
     <div className="py-10 rounded-3xl flex flex-col px-20 pb-32 mt-24 w-full bg-neutral-100 max-md:px-5 max-md:pb-24 max-md:mt-10 max-md:max-w-full">
-      <div className="flex z-10 flex-wrap gap-6 items-center mt-0 min-h-[249px]">
+      <div className="z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center mt-0 min-h-[249px]">
         {featuresData.map((feature, index) => (
           <FeatureCard key={index} {...feature} />
         ))}
