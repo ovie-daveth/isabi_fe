@@ -4,6 +4,7 @@ import { Button } from '../ui/button'
 import CustomButton from '../atoms/button'
 import { Menu } from 'lucide-react'
 import { GrClose } from 'react-icons/gr'
+import { useNavigate } from 'react-router-dom'
 
 const menus = [
   {
@@ -29,6 +30,8 @@ const menus = [
 ]
 const Header = () => {
 
+  const navigate = useNavigate()
+  
   const [active, setActive] = useState(1)
   const [isOpen, setOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
@@ -48,7 +51,7 @@ const Header = () => {
 
   
   return (
-    <div className='flex items-center justify-between z-50'>
+    <div className='flex items-center justify-between z-50 xl:pl-2 xl:mr-20'>
       <div>
         <Logo />
       </div>
@@ -89,10 +92,10 @@ const Header = () => {
       )}
     </div>
       <div className='items-center gap-3 hidden sm:flex'>
-        <CustomButton title="Sign in to your account" variant='secondary' />
+        <CustomButton fn={() => navigate("/auth/login")} title="Sign in to your account" variant='secondary' />
       </div>
       <div className='items-center gap-3 flex sm:hidden'>
-        <CustomButton title="Sign in" variant='secondary' />
+        <CustomButton fn={() => navigate("/auth/login")} title="Sign in" variant='secondary' />
       </div>
     </div>
   )

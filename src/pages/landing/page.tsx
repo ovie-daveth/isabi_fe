@@ -1,15 +1,16 @@
 import React from 'react'
 import RootLayout from '../layout'
 import Header from '@/components/module/header'
-import Features from '@/iSabiBook/Features'
-import CreativeSolution from '@/iSabiBook/CreativeSolution'
-import LearningSolutions from '@/iSabiBook/LearningSolutions'
-import Solutions from '@/iSabiBook/Solutions'
-import FAQ from '@/iSabiBook/FAQ'
-import CallToAction from '@/iSabiBook/CallToAction'
-import Newsletter from '@/iSabiBook/Newsletter'
-import Footer from '@/iSabiBook/Footer'
-import Hero from '@/iSabiBook/Hero'
+import Features from '@/pages/landing/Features'
+import CreativeSolution from '@/pages/landing/CreativeSolution'
+import LearningSolutions from '@/pages/landing/LearningSolutions'
+import Solutions from '@/pages/landing/Solutions'
+import FAQ from '@/pages/landing/FAQ'
+import CallToAction from '@/pages/landing/CallToAction'
+import Newsletter from '@/pages/landing/Newsletter'
+import Footer from '@/pages/landing/Footer'
+import Hero from '@/pages/landing/Hero'
+import EducationalPackages from './eduationalpackage'
 
 const LandingPage = () => {
   return (
@@ -23,6 +24,7 @@ const LandingPage = () => {
         <CreativeSolution />
         <LearningSolutions />
         <Solutions />
+        <EducationalPackages />
         <FAQ />
         <CallToAction />
         <Newsletter />

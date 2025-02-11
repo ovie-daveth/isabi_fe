@@ -7,7 +7,10 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true,
 });
+
+console.log("url", import.meta.env.VITE_API_URL)
 
 // Request Interceptor to attach Bearer Token
 api.interceptors.request.use(

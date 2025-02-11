@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import CustomButton from "@/components/atoms/button";
+import { AuthService } from "@/api/auth";
 
 const formSchema = z.object({
   otp: z.string().min(6, {
@@ -25,6 +26,7 @@ const formSchema = z.object({
 
 const OTPpage = () => {
   const navigate = useNavigate()
+  const authService = new AuthService();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,16 +40,22 @@ const OTPpage = () => {
   const [openToast, setOpenToast] = useState(false)
 
   // Submit handler
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
 
     const otpWithoutDashes = values.otp.replace(/-/g, "");
     console.log("OTP submitted:", otpWithoutDashes);
-
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      navigate("/auth/test-questions")
-    }, 3000);
+  
+  try {
+     const response = await authService.VerifyEmail(otpWithoutDashes);
+    if (response) {
+      console.log(response);
+      setLoading(false);
+      setOpenToast(true);
+    }
+  } catch (error) {
+    console.log(error);
+    setLoading(false);
+  }
   }
 
 

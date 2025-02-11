@@ -21,6 +21,7 @@ import LoadingState from "./components/loadingState";
 import CustomButton from "@/components/atoms/button";
 import { AuthService } from "@/api/auth";
 import { AuthResponse, SignUpRequest } from "@/variables/auth";
+import axios from "axios";
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
@@ -88,9 +89,9 @@ const SignUp = () => {
     };
   
     try {
-      const response = await authService.SignUpUsers(request);
+       const response = await authService.SignUpUsers(request);
       if (response) {
-        console.log(response as AuthResponse);
+        console.log(response);
         setLoading(false);
         setOpenToast(true);
       }
@@ -98,6 +99,23 @@ const SignUp = () => {
       console.log(error);
       setLoading(false);
     }
+
+    // const axios = require('axios');
+
+    // const options = {
+    //   method: 'POST',
+    //   url: 'http://isabibook.onrender.com/api/auth/signup',
+    //   data: request
+    // };
+    
+    // try {
+    //   const response = await axios.request(options);
+    //   console.log(response.data);
+    // } catch (error) {
+    //   console.error(error);
+    // }
+
+
   }
   
 
