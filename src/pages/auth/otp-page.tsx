@@ -17,6 +17,8 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import CustomButton from "@/components/atoms/button";
 import { AuthService } from "@/api/auth";
+import { getToken, setToken } from "@/lib/helpers";
+import { toastProp } from "./interface/types";
 
 const formSchema = z.object({
   otp: z.string().min(6, {
@@ -37,23 +39,41 @@ const OTPpage = () => {
 
   
   const [loading, setLoading] = useState(false)
-  const [openToast, setOpenToast] = useState(false)
+  const [openToast, setOpenToast] = useState<toastProp>()
+  const [message, setMessage] = useState("")
 
   // Submit handler
   async function onSubmit(values: z.infer<typeof formSchema>) {
 
     const otpWithoutDashes = values.otp.replace(/-/g, "");
     console.log("OTP submitted:", otpWithoutDashes);
+    const token = localStorage.getItem("token")
+    console.log("token", token)
+
+    const request = {
+      verificationCode: otpWithoutDashes,
+      token: getToken()
+    }
   
   try {
-     const response = await authService.VerifyEmail(otpWithoutDashes);
+     const response = await authService.VerifyEmail(request);
     if (response) {
       console.log(response);
+       console.log("signup", response);
+      setMessage(response?.message)
       setLoading(false);
-      setOpenToast(true);
+      setOpenToast({
+        isOpen: true,
+        type: "success"
+      });
     }
   } catch (error) {
     console.log(error);
+    setMessage(error.message)
+    setOpenToast({
+      isOpen: true,
+      type: "error"
+    })
     setLoading(false);
   }
   }
@@ -93,7 +113,7 @@ const OTPpage = () => {
   };
 
   return (
-    <AuthLayout setOpenToast={setOpenToast} openToast={openToast} toastTitle="OTP Sent" toastMessage="Verification OTP was sent" setOpen={setLoading} loadingMessage="Verifiying OTP, please wait..." loading={loading}  progress={2} title="Sign up">
+    <AuthLayout setOpenToast={setOpenToast} openToast={openToast} toastTitle="Email Verified" toastMessage={message} setOpen={setLoading} loadingMessage="Verifiying OTP, please wait..." loading={loading}  progress={2} title="Sign up">
       <div>
         <div className="w-full bg-white rounded-3xl p-10">
           <div className="flex items-center gap-2 w-[90%] mx-auto">

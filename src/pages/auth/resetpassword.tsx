@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ResetLayout from "./resetLayout";
 import CustomButton from "@/components/atoms/button";
+import { toastProp } from "./interface/types";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -29,7 +30,7 @@ const ResetPassword = () => {
 
   const navigate = useNavigate()
 
-  const [openToast, setOtpToast] = useState(false)
+  const [openToast, setOtpToast] = useState<toastProp>()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -46,7 +47,10 @@ const ResetPassword = () => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      setOtpToast(true)
+      setOtpToast({
+        isOpen: true,
+        type: "success"
+      })
     }, 3000);
     
 

@@ -17,6 +17,9 @@ import { useState } from "react";
 import {Link} from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 import CustomButton from "@/components/atoms/button";
+import { AuthService } from "@/api/auth";
+import { loginRequest } from "@/variables/auth";
+import { toastProp } from "./interface/types";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -32,6 +35,7 @@ const formSchema = z.object({
 const SignIn = () => {
 
   const navigate = useNavigate()
+  const authService = new AuthService();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,16 +46,22 @@ const SignIn = () => {
   });
 
   const [loading, setLoading] = useState(false)
+  const [openToast, setOpenToast] = useState<toastProp>()
+
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log("form", values);
     setLoading(true)
-    setTimeout(() => {
+    await authService.Login(values as loginRequest)
+    .then((data) => {
+      console.log('login', data)
       setLoading(false)
-      navigate("/")
-    }, 3000);
-    
+      setOpenToast({
+        isOpen: true,
+        type: "success"
+      })
+    })  
 
   }
 
@@ -78,7 +88,7 @@ const SignIn = () => {
 
 
   return (
-    <AuthLayout  setOpen={setLoading} loadingMessage="Loading your account, Please wait..." loading={loading} progress={1} title="Sign in">
+    <AuthLayout  setOpen={setLoading} loadingMessage="Loading your account, Please wait..." loading={loading} progress={1} title="Sign in" openToast={openToast} setOpenToast={setOpenToast} toastTitle="OTP Sent" toastMessage="Login opt sent to mail">
       <div>
         <div className="w-full bg-white rounded-3xl p-10">
           <h1

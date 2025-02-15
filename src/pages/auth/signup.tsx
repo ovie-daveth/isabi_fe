@@ -17,11 +17,11 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
-import LoadingState from "./components/loadingState";
 import CustomButton from "@/components/atoms/button";
 import { AuthService } from "@/api/auth";
 import { AuthResponse, SignUpRequest } from "@/variables/auth";
-import axios from "axios";
+import { getToken, setToken, setUserId } from "@/lib/helpers";
+import { toastProp } from "./interface/types";
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
@@ -65,7 +65,8 @@ const SignUp = () => {
   });
 
   const [loading, setLoading] = useState(false)
-  const [openToast, setOpenToast] = useState(false)
+  const [openToast, setOpenToast] = useState<toastProp>()
+  const [message, setMessage] = useState("")
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -91,13 +92,25 @@ const SignUp = () => {
     try {
        const response = await authService.SignUpUsers(request);
       if (response) {
-        console.log(response);
+        console.log("signup", response);
+        const data = response as AuthResponse
+        localStorage.setItem("token", data?.token)
+        localStorage.setItem("userId", data?.userId)
+        setMessage(data.message)
         setLoading(false);
-        setOpenToast(true);
+        setOpenToast({
+          isOpen: true,
+          type: "success"
+        });
       }
     } catch (error) {
       console.log(error);
+      setMessage(error?.response.data.message)
       setLoading(false);
+      setOpenToast({
+        isOpen: true,
+        type: "error"
+      })
     }
 
     // const axios = require('axios');
@@ -144,7 +157,7 @@ const SignUp = () => {
 
 
   return (
-    <AuthLayout setOpenToast={setOpenToast} openToast={openToast} toastTitle="OTP Sent" toastMessage="Verification OTP was sent" setOpen={setLoading} loadingMessage="Siging up, Please wait..." loading={loading} progress={1} title="Sign up">
+    <AuthLayout setOpenToast={setOpenToast} openToast={openToast} toastTitle="OTP Sent" toastMessage={message} setOpen={setLoading} loadingMessage="Siging up, Please wait..." loading={loading} progress={1} title="Sign up">
       <div>
         <div className="w-full bg-white rounded-3xl p-10">
           <div className="flex items-center gap-2 w-[90%] mx-auto">

@@ -1,3 +1,4 @@
+import CustomButton from "@/components/atoms/button";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -68,12 +69,9 @@ const CallToAction: React.FC = () => {
             </div>
           </div>
         </div>
-        <Link
-          to="/signup"
-          className="self-stretch py-5 pr-1 pl-7 mt-16 max-w-full text-lg font-semibold tracking-tighter leading-none text-center text-white bg-indigo-600 min-h-[58px] rounded-[100px] w-[300px] max-md:pl-5 max-md:mt-10"
-        >
-          Create an iSabiBook account
-        </Link>
+        <div className="mt-16">
+        <CustomButton title={"Create an iSabiBook Account"} variant={"primary"} />
+        </div>
       </div>
     </div>
   );

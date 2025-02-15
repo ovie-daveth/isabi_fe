@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ResetLayout from "./resetLayout";
 import CustomButton from "@/components/atoms/button";
+import { toastProp } from "./interface/types";
 
 const formSchema = z.object({
   otp: z.string().min(6, {
@@ -35,7 +36,7 @@ const ResetOTPpage = () => {
 
   
   const [loading, setLoading] = useState(false)
-  const [openToast, setOpenToast] = useState(false)
+  const [openToast, setOpenToast] = useState<toastProp>()
 
   // Submit handler
   function onSubmit(values: z.infer<typeof formSchema>) {

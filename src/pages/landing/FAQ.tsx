@@ -6,6 +6,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { ChevronDown } from "lucide-react";
+import CardHeader from "./card-header";
 
 type FAQItem = {
   id: string;
@@ -42,15 +43,22 @@ const faqData: FAQItem[] = [
 
 const FAQ: React.FC = () => {
   return (
-    <div className="w-full max-w-2xl mx-auto mt-10">
+    <div className="w-full mx-auto mt-10">
+    <div className="flex items-start flex-col gap-10 my-12">
+      <CardHeader />
+      <h1 className="lg:text-7xl text-4xl font-semibold tracking-tighter lg:leading-[60px] max-lg:max-w-full max-md:text-4xl max-md:leading-10 w-[50%]">Our answers to common questions asked</h1>
+    </div>
       <Accordion type="single" collapsible>
         {faqData.map((item) => (
           <AccordionItem key={item.id} value={item.id}>
-            <AccordionTrigger>
+            <AccordionTrigger className="flex items-center justify-between w-full">
+              <h1 className="text-2xl font-bold mr-auto">{item.id}</h1>
+              <h1 className="lg:text-3xl text-xl data-[state=open]:text-blue-500">
               {item.question}
-              <ChevronDown className="ml-auto h-5 w-5" />
+              </h1>
+              <ChevronDown className="ml-auto h-5 w-5 data-[state=open]:text-blue-500" />
             </AccordionTrigger>
-            <AccordionContent>{item.answer}</AccordionContent>
+            <AccordionContent className="mx-auto flex items-start text-left w-[30%] justify-center">{item.answer}</AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>

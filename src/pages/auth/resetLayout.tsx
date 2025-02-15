@@ -9,6 +9,7 @@ import BG from "@/assets/BG.png";
 
 import LoadingState from "./components/loadingState";
 import ToastMessage from "./components/toastMessage";
+import { toastProp } from "./interface/types";
 ;
 
 const ResetLayout = ({
@@ -28,8 +29,8 @@ const ResetLayout = ({
   loadingMessage?: string
   toastMessage?: string
   toastTitle?: string
-  openToast?: boolean
-  setOpenToast?: Dispatch<SetStateAction<boolean>>
+  openToast?: toastProp
+  setOpenToast?: Dispatch<SetStateAction<toastProp>>
   setOpen: Dispatch<SetStateAction<boolean>>
 }) => {
   return (
@@ -38,7 +39,7 @@ const ResetLayout = ({
           loading && <LoadingState setOpen={setOpen} loadingMessage={loadingMessage} />
       }
       {
-        openToast && <ToastMessage title={toastTitle} setOpen={setOpenToast} loadingMessage={toastMessage} />
+        openToast.isOpen && <ToastMessage title={toastTitle} setOpen={setOpenToast} loadingMessage={toastMessage} openToast={openToast} />
       }
       <div className="flex items-start xl:w-[70%] mx-auto justify-between xl:pl-28 lg:px-0 md:w-[90%] w-full md:px-0 px-5 flex-col md:flex-row ">
         <div className="xl:w-[40%] lg:w-[55%] md:w-[50%] ">

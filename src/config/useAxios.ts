@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
+import { getToken, getUserId } from "@/lib/helpers";
 
 // Create an Axios instance
 const api = axios.create({
@@ -11,11 +12,12 @@ const api = axios.create({
 });
 
 console.log("url", import.meta.env.VITE_API_URL)
+console.log("token, userId", getToken(), getUserId())
 
 // Request Interceptor to attach Bearer Token
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = getToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { GrCheckmark } from "react-icons/gr";import LoadingState from "./components/loadingState";
 import ToastMessage from "./components/toastMessage";
 import Logo from "@/components/atoms/logo";
+import { toastProp } from "./interface/types";
 ;
 
 const gains = [
@@ -43,8 +44,8 @@ const AuthLayout = ({
   loadingMessage?: string
   toastMessage?: string
   toastTitle?: string
-  openToast?: boolean
-  setOpenToast?: Dispatch<SetStateAction<boolean>>
+  openToast?: toastProp
+  setOpenToast?: Dispatch<SetStateAction<toastProp>> 
   setOpen: Dispatch<SetStateAction<boolean>>
 }) => {
   return (
@@ -53,7 +54,7 @@ const AuthLayout = ({
           loading && <LoadingState setOpen={setOpen} loadingMessage={loadingMessage} />
       }
       {
-        openToast && <ToastMessage title={toastTitle} setOpen={setOpenToast} loadingMessage={toastMessage} />
+        openToast?.isOpen && <ToastMessage openToast={openToast} title={toastTitle} setOpen={setOpenToast} loadingMessage={toastMessage} />
       }
       <div className="flex items-start xl:w-[70%] mx-auto justify-between xl:pl-28 lg:px-0 md:w-[90%] w-full md:px-0 px-5 flex-col md:flex-row ">
         <div className="xl:w-[40%] lg:w-[55%] md:w-[50%] ">

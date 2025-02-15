@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingState from "./components/loadingState";
 import ResetLayout from "./resetLayout";
 import CustomButton from "@/components/atoms/button";
+import { toastProp } from "./interface/types";
 
 const formSchema = z.object({
   password: z.string().min(6, {
@@ -50,7 +51,7 @@ const NewPassword = () => {
   });
 
   const [loading, setLoading] = useState(false)
-  const [openToast, setOpenToast] = useState(false)
+  const [openToast, setOpenToast] = useState<toastProp>()
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -58,7 +59,10 @@ const NewPassword = () => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      setOpenToast(true)
+      setOpenToast({
+        isOpen: true,
+        type: "success"
+      })
     }, 3000);
     
 

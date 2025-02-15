@@ -46,7 +46,7 @@ const EducationalPackages: React.FC = () => {
                       <div className="text-2xl tracking-tight leading-tight">
                         Simple steps to start using iSabiBook
                       </div>
-                      <div className="mt-2.5 text-sm tracking-tight leading-4">
+                      <div className="mt-2.5 text-sm tracking-wide leading-5 font-light">
                         <span className="text-white">A proven workflow</span>{" "}
                         that ensures seamless collaboration and{" "}
                         <span className="text-white">outstanding results</span>.{" "}
