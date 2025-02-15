@@ -14,6 +14,9 @@ import { GrCheckmark } from "react-icons/gr";import LoadingState from "./compone
 import ToastMessage from "./components/toastMessage";
 import Logo from "@/components/atoms/logo";
 import { toastProp } from "./interface/types";
+import { AuthService } from "@/api/auth";
+import { googleRequest } from "@/variables/auth";
+import { getToken } from "@/lib/helpers";
 ;
 
 const gains = [
@@ -48,6 +51,22 @@ const AuthLayout = ({
   setOpenToast?: Dispatch<SetStateAction<toastProp>> 
   setOpen: Dispatch<SetStateAction<boolean>>
 }) => {
+
+  console.log("show", progress, title)
+  const handleRegister = async(path: string) => {
+    let googleReq: googleRequest = {
+      token: getToken(),
+      logoutOtherSession: false
+      
+      
+    }
+    if(path === "google"){
+      const response = await new AuthService().GoogleAuth(googleReq)
+      if(response){
+        
+      }
+    }
+  }
   return (
     <div className={`${style} min-h-screen w-full pt-28`}>
       {
@@ -96,15 +115,15 @@ const AuthLayout = ({
           <div className={`bg-grayLight w-[100%] rounded-3xl drop-shadow-md shadow-md p-3`}>
             {children}
           </div>
-          {(title.toLowerCase() === "sign up" && progress === 1) || (title.toLowerCase() === "sign in" ) && (
+          {(title.toLowerCase() == "sign up" || title.toLowerCase() == "sign in")  && progress == 1 && (
             <div className=" flex justify-between items-center gap-10 mt-10 w-[100%]">
-              <Button className="w-full h-16 rounded-3xl bg-grayLight text-foreground font-semibold gap-3" variant="ghost">
+              <Button type="button" onClick={() => handleRegister("google")} className="w-full h-16 rounded-3xl bg-grayLight text-foreground font-semibold gap-3" variant="ghost">
                 <span>
                 <img src={google} />
                 </span>
                 <span>Register with Google</span>
               </Button>
-              <Button className="w-full h-16 rounded-3xl bg-grayLight text-foreground font-semibold gap-3" variant="ghost">
+              <Button type="button" onClick={() => handleRegister("apple")} className="w-full h-16 rounded-3xl bg-grayLight text-foreground font-semibold gap-3" variant="ghost">
                 <span>
                  <img src={apple} alt="apple icon" />
                 </span>

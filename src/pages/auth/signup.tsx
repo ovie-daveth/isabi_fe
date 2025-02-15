@@ -96,6 +96,7 @@ const SignUp = () => {
         const data = response as AuthResponse
         localStorage.setItem("token", data?.token)
         localStorage.setItem("userId", data?.userId)
+        localStorage.setItem("email", values.email)
         setMessage(data.message)
         setLoading(false);
         setOpenToast({

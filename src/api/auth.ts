@@ -1,7 +1,7 @@
 // api/auth/signup
 
 import { useAxios } from "@/config/useAxios";
-import { AuthResponse, loginRequest, onboardRequest, SignUpRequest, UserResponse } from "@/variables/auth";
+import { AuthResponse, googleRequest, loginRequest, onboardRequest, SignUpRequest, UserResponse } from "@/variables/auth";
 import { AxiosInstance } from "axios";
 
 export class AuthService {
@@ -47,12 +47,13 @@ export class AuthService {
     }
 
     async ResendEmailVerification(data: {email: string}){
-        let url = `${this.baseUrl}/resend-verification`;
+        let url = `${this.baseUrl}/resend-ver-otp`;
         const response = await this.axiosInstance.post<AuthResponse>(url, data)
         return response.data
     }
 
-    async GoogleAuth(idToken: {idToken: string}){
+
+    async GoogleAuth(idToken: googleRequest){
         let url = `${this.baseUrl}/google-auth`;
         const response = await this.axiosInstance.post<AuthResponse>(url, idToken)
         return response.data

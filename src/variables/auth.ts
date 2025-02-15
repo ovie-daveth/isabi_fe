@@ -5,6 +5,10 @@ export interface SignUpRequest {
     password: string
 }
 
+export interface googleRequest {
+  token: string,
+  logoutOtherSession: boolean
+}
 
 export interface AuthResponse {
     success: boolean,

@@ -41,6 +41,7 @@ const OTPpage = () => {
   const [loading, setLoading] = useState(false)
   const [openToast, setOpenToast] = useState<toastProp>()
   const [message, setMessage] = useState("")
+  const [toastTitle, setToastTitle] = useState("")
 
   // Submit handler
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -50,16 +51,17 @@ const OTPpage = () => {
     const token = localStorage.getItem("token")
     console.log("token", token)
 
+    setLoading(true)
     const request = {
       verificationCode: otpWithoutDashes,
       token: getToken()
     }
-  
   try {
      const response = await authService.VerifyEmail(request);
     if (response) {
       console.log(response);
        console.log("signup", response);
+       setToastTitle("Email Verified")
       setMessage(response?.message)
       setLoading(false);
       setOpenToast({
@@ -76,6 +78,21 @@ const OTPpage = () => {
     })
     setLoading(false);
   }
+  }
+
+  const handleResendOTP = async() => {
+
+    const request = {
+      email: localStorage.getItem("email")
+    }
+    const response = await authService.ResendEmailVerification(request)
+    if(response){
+      setToastTitle("OTP sent")
+      setMessage("OTP has been sent to your mail")
+      setOpenToast({
+        isOpen: true
+      })
+    }
   }
 
 
@@ -113,7 +130,7 @@ const OTPpage = () => {
   };
 
   return (
-    <AuthLayout setOpenToast={setOpenToast} openToast={openToast} toastTitle="Email Verified" toastMessage={message} setOpen={setLoading} loadingMessage="Verifiying OTP, please wait..." loading={loading}  progress={2} title="Sign up">
+    <AuthLayout setOpenToast={setOpenToast} openToast={openToast} toastTitle={toastTitle} toastMessage={message} setOpen={setLoading} loadingMessage="Verifiying OTP, please wait..." loading={loading}  progress={2} title="Sign up">
       <div>
         <div className="w-full bg-white rounded-3xl p-10">
           <div className="flex items-center gap-2 w-[90%] mx-auto">
@@ -162,9 +179,9 @@ const OTPpage = () => {
         </div>
         <div className="pt-6 pl-16 pb-5 flex items-center gap-3">
           <h4 className="font-semibold text-foreground text-lg">Didn't get opt? </h4>
-          <Link to="/" className="text-primary hover:text-primary/80 font-semibold text-lg">
+          <button onClick={handleResendOTP} type="button" className="text-primary hover:text-primary/80 font-semibold text-lg">
             Resend OTP
-          </Link>
+          </button>
           <MdArrowOutward className="text-primary text-xl" />
         </div>
       </div>
