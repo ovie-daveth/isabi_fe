@@ -1,11 +1,12 @@
 import AuthLayout from "./authlayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "@/components/atoms/button";
 import q2 from "@/assets/q2.png"
 import Questions from "./components/questions";
 import { toastProp } from "./interface/types";
+import { getCookie } from "@/lib/helpers";
 
 
 const TestQuestion = () => {
@@ -25,11 +26,20 @@ const TestQuestion = () => {
 
  }
 
+ useEffect(() => {
+  const data = getCookie("_session")
+  if(data){
+    console.log(data)
+  } else {
+    console.log("Notjing")
+  }
+ }, [])
+
   
   
 
   return (
-    <AuthLayout toastTitle={openToast.type === "error" ? "Error" : "Registered"} setOpenToast={setOpenToast} openToast={openToast} setOpen={setLoading} toastMessage={message} loading={loading} progress={3} title="Sign up">
+    <AuthLayout toastTitle={"Registered"} setOpenToast={setOpenToast} openToast={openToast} setOpen={setLoading} toastMessage={message} loading={loading} progress={3} title="Sign up">
       <div className="">
         <div className="w-full bg-white rounded-3xl p-10">
           <div className="flex items-center gap-2 w-[90%] mx-auto">
