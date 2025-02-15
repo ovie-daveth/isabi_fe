@@ -1,3 +1,4 @@
+import CustomButton from "@/components/atoms/button";
 import React, { useState } from "react";
 
 const Newsletter: React.FC = () => {
@@ -11,16 +12,16 @@ const Newsletter: React.FC = () => {
 
   return (
     <div className="flex flex-wrap gap-5 justify-between items-start mt-16 w-full max-w-[1290px] max-md:mt-10 max-md:max-w-full">
-      <div className="self-end mt-6 text-3xl font-semibold tracking-tighter leading-10 text-black">
+      <div className="self-end mt-6 text-3xl font-semibold tracking-tighter leading-10 text-black ">
         Learn better with iSabiBok, an e-learning platform suited just for you
       </div>
       <form
         onSubmit={handleSubmit}
-        className="flex overflow-hidden relative items-start self-start p-1.5 text-base bg-white rounded-3xl max-md:max-w-full"
+        className="flex overflow-hidden relative items-start self-start p-1.5 text-base rounded-3xl max-md:max-w-full z-50"
       >
-        <div className="flex z-0 flex-col flex-1 shrink justify-center my-auto w-full basis-0 min-w-[240px] max-md:max-w-full">
+        <div className="flex flex-col flex-1 shrink justify-center my-auto w-full basis-0 min-w-[240px] max-md:max-w-full z-50">
           <div className="flex flex-1 justify-center items-center size-full max-md:max-w-full">
-            <div className="flex flex-1 shrink justify-center self-stretch my-auto w-full basis-0 min-w-[240px] max-md:max-w-full">
+            <div className="flex flex-1 shrink justify-center self-stretch my-auto w-full basis-0 min-w-[240px] max-md:max-w-full z-50">
               <label htmlFor="emailInput" className="sr-only">
                 Enter your email
               </label>
@@ -30,18 +31,11 @@ const Newsletter: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="email@provider.com"
-                className="flex overflow-hidden flex-col flex-1 shrink px-5 pt-3.5 pb-4 whitespace-nowrap rounded-2xl basis-0 min-w-[240px] text-stone-600"
+                className="flex flex-col flex-1 shrink px-5 pt-3.5 pb-4 whitespace-nowrap rounded-2xl basis-0 min-w-[240px] text-stone-600"
                 required
                 aria-label="Enter your email"
               />
-              <button
-                type="submit"
-                className="flex flex-col leading-none text-center text-white w-[172px]"
-              >
-                <div className="overflow-hidden flex-1 shrink px-5 py-3.5 w-full bg-indigo-600 rounded-2xl">
-                  Get 10% Discount
-                </div>
-              </button>
+              <CustomButton isIcon title={"Get 10% Discount"} variant={"primary"} />
             </div>
           </div>
         </div>

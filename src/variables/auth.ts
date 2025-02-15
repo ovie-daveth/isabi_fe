@@ -10,6 +10,7 @@ export interface AuthResponse {
     success: boolean,
     message: string,
     token?: string
+    userId?: string
   }
 
 export interface loginRequest {
@@ -26,3 +27,11 @@ export interface UserResponse {
       email: string
     }
   }
+
+  
+export interface onboardRequest {
+  studyGoal: string,
+  heardAboutPlatform: string,
+  desiredCourse: string,
+  phone: string
+}

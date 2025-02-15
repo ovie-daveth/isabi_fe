@@ -1,7 +1,7 @@
 // api/auth/signup
 
 import { useAxios } from "@/config/useAxios";
-import { AuthResponse, loginRequest, SignUpRequest, UserResponse } from "@/variables/auth";
+import { AuthResponse, loginRequest, onboardRequest, SignUpRequest, UserResponse } from "@/variables/auth";
 import { AxiosInstance } from "axios";
 
 export class AuthService {
@@ -21,11 +21,24 @@ export class AuthService {
         return response.data
     }
 
-    async VerifyEmail(token: string){
-        let url = `${this.baseUrl}/verify-email:${token}`;
-        const response = await this.axiosInstance.get<AuthResponse>(url)
+    async VerifyEmail(token: { verificationCode: string, token: string }) {
+        let url = `${this.baseUrl}/verify-email`;
+        console.log("Headers before request:", this.axiosInstance.defaults.headers);
+        
+        const response = await this.axiosInstance.post<AuthResponse>(url, token, {
+            withCredentials: true, // Explicitly ensure cookies are sent
+        });
+        
+        return response.data;
+    }
+
+     
+    async onBoardStudents(data: onboardRequest, userId: string){
+        let url = `${this.baseUrl}/onboarding/${userId}`;
+        const response = await this.axiosInstance.post<AuthResponse>(url, data)
         return response.data
     }
+    
 
     async Login(data: loginRequest){
         let url = `${this.baseUrl}/login`;

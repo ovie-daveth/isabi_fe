@@ -2,31 +2,34 @@ import AuthLayout from "./authlayout";
 import { useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import q2 from "@/assets/q2.png"
-import q1 from "@/assets/q1.png"
-import { Button } from "@/components/ui/button";
 import CustomButton from "@/components/atoms/button";
+import q2 from "@/assets/q2.png"
+import Questions from "./components/questions";
+import { toastProp } from "./interface/types";
 
 
 const TestQuestion = () => {
 
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
-  const [isActive, setIsActive] = useState<number>(0)
-  const [openToast, setOpenToast] = useState<boolean>(false)
+  const [openToast, setOpenToast] = useState<toastProp>()
+  const [progress, setProgress] = useState(1)
+  const [message, setMessage] = useState("")
 
-  const handleSelectAnswer = (id: number) => {
-    setIsActive(id)
-  }
+ const getQuestion = (id: number) => {
+  let questions: string = "";
+  
+  questions = id === 1 ? "What is your desired Goal?" : id === 2 ? "What subject are you starting with?" : id === 3 ? "Where did you hear about that?" : "Input your phone number to proceed"
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault()
-    setOpenToast(true)
-  }
+  return questions
+
+ }
+
+  
   
 
   return (
-    <AuthLayout toastTitle="Registered" setOpenToast={setOpenToast} openToast={openToast} setOpen={setLoading} toastMessage="Your registration was successful" loading={loading} progress={3} title="Sign up">
+    <AuthLayout toastTitle={openToast.type === "error" ? "Error" : "Registered"} setOpenToast={setOpenToast} openToast={openToast} setOpen={setLoading} toastMessage={message} loading={loading} progress={3} title="Sign up">
       <div className="">
         <div className="w-full bg-white rounded-3xl p-10">
           <div className="flex items-center gap-2 w-[90%] mx-auto">
@@ -47,24 +50,14 @@ const TestQuestion = () => {
           <div>
             <div className="border-2 border-grayLight rounded-full h-fit p-2 flex items-center justify-start gap-5">
               <img src={q2} alt="q1" />
-              <p className="text-start lg:text-lg xl:text-xl break-words whitespace-normal">Why minimalism works for modern portfolios</p>
+              <p className="text-start lg:text-md xl:text-lg break-words whitespace-normal">{getQuestion(progress)}</p>
             </div>
 
-           <div className="mt-12 w-full">
-              <form onSubmit={handleSubmit} className="w-full flex-col flex gap-3">
-                <Button type="button" onClick={() => handleSelectAnswer(1)} variant="ghost" className={`border-2 border-grayLight rounded-full h-fit p-2 flex items-center justify-start gap-5 w-full ${isActive === 1 && "bg-grayLight"}`}>
-                  <img src={q1} alt="q2" />
-                  <p className="text-start lg:text-lg xl:text-xl break-words whitespace-normal">Why minimalism works for modern portfolios</p>
-                </Button>
-                <Button type="button" onClick={() => handleSelectAnswer(2)} variant="ghost" className={`border-2 border-grayLight rounded-full h-fit p-2 flex items-center justify-start gap-5 w-full ${isActive === 2 && "bg-grayLight"}`}>
-                  <img src={q1} alt="q2" />
-                  <p className="text-start lg:text-lg xl:text-xl break-words whitespace-normal">Why minimalism works for modern portfolios</p>
-                </Button>
-                <Button type="button" onClick={() => handleSelectAnswer(3)} variant="ghost" className={`border-2 border-grayLight rounded-full h-fit p-2 flex items-center justify-start gap-5 w-full ${isActive === 3 && "bg-grayLight"}`}>
-                  <img src={q1} alt="q2" />
-                  <p className="text-start lg:text-lg xl:text-xl break-words whitespace-normal">Why minimalism works for modern portfolios</p>
-                </Button>
-              <CustomButton title="Create an iSabiBook account" variant="primary" />
+           <div className="mt-10 w-full">
+              <form className="w-full flex-col flex gap-3">
+                {
+                    <Questions setMessage={setMessage} setLoading={setLoading} setOpenToast={setOpenToast} setProgress={setProgress} progress={progress} />
+                }
 
               </form>
            </div>
