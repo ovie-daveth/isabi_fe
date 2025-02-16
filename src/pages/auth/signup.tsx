@@ -3,11 +3,9 @@ import { MdArrowOutward } from "react-icons/md";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,12 +13,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "@/components/atoms/button";
 import { AuthService } from "@/api/auth";
 import { AuthResponse, SignUpRequest } from "@/variables/auth";
-import { getToken, setToken, setUserId } from "@/lib/helpers";
 import { toastProp } from "./interface/types";
 
 const formSchema = z.object({

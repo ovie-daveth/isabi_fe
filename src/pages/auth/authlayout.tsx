@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactNode, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import img1 from "@/assets/Ellipse 21.png";
 import img2 from "@/assets/Ellipse 22.png";
 import img3 from "@/assets/Ellipse 23.png";

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import Header from './components/package-header'
 
 const StudentLayout = ({children}: {children: ReactNode}) => {

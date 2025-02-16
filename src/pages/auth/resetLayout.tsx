@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactNode, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import logo from "@/assets/iSabiBook.png";
 import logoIcon from "@/assets/image.png";
 import reset1 from "@/assets/3triangle in 1 angle 2.png";
