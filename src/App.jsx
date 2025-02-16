@@ -7,6 +7,7 @@ import ResetPassword from './pages/auth/resetpassword';
 import ResetOTPpage from './pages/auth/resetotp';
 import NewPassword from './pages/auth/new-password';
 import LandingPage from './pages/landing/page';
+import StudyPackages from './pages/learning/study-packages/page';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
       <Route path="/auth/reset-password" element={<ResetPassword />} />
       <Route path="/auth/reset-otp" element={<ResetOTPpage />} />
       <Route path="/auth/new-password" element={<NewPassword />} />
+
+      {/* Study package */}
+      <Route path="/study-package" element={<StudyPackages />} />
     </Routes>
   );
 }
