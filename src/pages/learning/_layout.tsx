@@ -6,7 +6,7 @@ const StudentLayout = ({children}: {children: ReactNode}) => {
     <div className='pt-10'>
        <div className="flex overflow-hidden flex-col bg-white">
        <Header />
-        <div className='px-20 bg-zinc-100'>
+        <div className='xl:px-20 px-8 bg-zinc-100 '>
         {children}
         </div>
       </div>

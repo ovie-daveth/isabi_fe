@@ -12,6 +12,9 @@ const FeatureList = ({title, features}: {title: string, features: string[]}) => 
     "Priority email support for faster communication"
   ];
 
+
+  const data = features ?? feature
+
   
   return (
     <div className="flex flex-col self-center mt-12 max-w-full font-semibold leading-none text-neutral-900 w-[428px] max-md:mt-10">
@@ -19,7 +22,7 @@ const FeatureList = ({title, features}: {title: string, features: string[]}) => 
         Everything in the {title} Plan, plus:
       </div>
       <div className="flex flex-col items-start mt-6 w-full text-base tracking-tighter max-md:max-w-full">
-        {features.map((feature, index) => (
+        {data.map((feature, index) => (
           <div key={index} className="flex gap-3 mt-3.5 max-w-full w-full">
             <img
               loading="lazy"

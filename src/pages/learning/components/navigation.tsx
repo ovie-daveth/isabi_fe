@@ -23,10 +23,10 @@ const Navigation = () => {
     const activeTab = useSelector((state: RootState) => state.navigation.activeTab);
     
   return (
-    <div className="flex flex-wrap gap-6 items-center mt-2.5 text-base font-semibold tracking-tight text-black max-md:max-w-full mb-5">
+    <div className="flex gap-6 items-center md:mt-2.5 mt-10 text-base font-semibold tracking-tight text-black max-md:max-w-full mb-5 md:px-5 px-2">
         {
             menus.map((item) => (
-                <button  onClick={() => dispatch(setActiveTab(item.id))} className={`overflow-hidden gap-2.5 self-stretch px-8 py-5 my-auto font-bold text-black rounded-2xlmax-md:px-5 ${activeTab === item.id ? "bg-neutral-50" : ""}`}>
+                <button  onClick={() => dispatch(setActiveTab(item.id))} className={`overflow-hidden gap-2.5 self-stretch md:px-8 py-5 my-auto font-semibold text-black rounded-2xl px-3 ${activeTab === item.id ? "bg-zinc-100" : ""}`}>
                     {item.name}
                 </button>
             ))

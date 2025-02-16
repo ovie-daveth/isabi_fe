@@ -34,16 +34,16 @@ const Header: React.FC = () => {
     setActive(id)
   }
   return (
-    <div className="px-32 flex flex-col items-start  w-full max-md:px-5 max-md:max-w-full">
-      <div className="flex flex-wrap gap-10 justify-between items-center self-stretch w-full max-md:max-w-full">
-        <div className="flex flex-wrap gap-16 items-center self-stretch my-auto min-w-[240px] max-md:max-w-full">
+    <div className="xl:px-32 md:px-16 px-5 flex flex-col items-start  w-full max-md:max-w-full">
+      <div className="flex flex-wrap sm:gap-10 gap-5 justify-between items-center self-stretch w-full max-md:max-w-full">
+        <div className="flex flex-wrap sm:gap-16 gap-5 items-center self-stretch my-auto min-w-[240px] max-md:max-w-full">
           <div className="flex gap-3 items-center self-stretch my-auto">
             <Logo /> 
           </div>
-          <nav className={`flex flex-wrap items-center self-stretch my-auto text-base font-semibold text-black min-w-[240px] max-md:max-w-full`}>
+          <nav className={`flex sm:flex-wrap items-center sm:self-stretch my-auto sm:text-base font-semibold text-black sm:gap-0 gap-5 `}>
            {
             menus.map((item) => (
-              <button onClick={() => handleNavigation(item.id)} className={`overflow-hidden gap-2.5 self-stretch px-8 py-3.5 my-auto whitespace-nowrap rounded-[100px] max-md:px-5 ${active === item.id ? "bg-slate-900 text-white" : ""}`}>
+              <button onClick={() => handleNavigation(item.id)} className={`overflow-hidden sm:gap-2.5 self-stretch sm:px-8 sm:py-3.5 my-auto whitespace-nowrap rounded-[100px] sm:max-md:px-5 px-2  ${active === item.id ? "bg-slate-900 text-white" : ""}`}>
               {item.name}
             </button>
             ))
@@ -105,7 +105,7 @@ const Header: React.FC = () => {
         <img
           loading="lazy"
           src={courseRegistered ? stationary : saly}
-          className="object-contain shrink-0 max-w-full aspect-[1.2] w-[212px]"
+          className="object-contain shrink-0 max-w-full aspect-[1.2] w-[212px] sm:block hidden"
           alt="Decorative illustration"
         />
       </div>

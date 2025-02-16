@@ -15,7 +15,7 @@ const PackageCard: React.FC<PackageProps> = ({ package: pkg }) => {
     <div className="flex flex-col px-1 pt-1 mx-auto w-full border border-gray-200 border-solid rounded-[46px] max-md:mt-6 max-md:max-w-full bg-zinc-100">
     <div className='bg-white rounded-[46px]'>
     <Tabs defaultValue="Personal">
-<TabsList className="grid w-[60%] grid-cols-3  h-16 rounded-full mt-10 mb-16 mx-10 my-10">
+<TabsList className="grid xl:w-[60%] lg:w-[80%] grid-cols-3  h-16 rounded-full mt-10 mb-16 mx-10 my-10">
   <TabsTrigger value="Personal" className="rounded-full h-full text-black">
     Personal
   </TabsTrigger>
