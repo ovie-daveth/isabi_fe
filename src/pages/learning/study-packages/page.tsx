@@ -40,7 +40,7 @@ const StudyPackages = () => {
 
   return (
     <StudentLayout>
-      <div className="overflow-hidden px-16 pt-12 pb-28 w-full bg-zinc-100 max-md:px-5 max-md:pb-24 max-md:max-w-full">
+      <div className="overflow-hidden px-16 pt-12 pb-28 w-full max-md:px-5 max-md:pb-24 max-md:max-w-full">
         {activeTab === 1 && (
           <div className="flex gap-5 max-md:flex-col">
             {studyPackages.map((pkg, index) => (

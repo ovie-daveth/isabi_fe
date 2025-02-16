@@ -12,10 +12,10 @@ const PackageCard: React.FC<PackageProps> = ({ package: pkg }) => {
  
 
   return (
-    <div className="flex flex-col px-2.5 pt-2.5 pb-16 mx-auto w-full border border-gray-200 border-solid bg-gray-50 rounded-[46px] max-md:mt-6 max-md:max-w-full">
-    <div className="flex flex-col w-full font-medium leading-none text-neutral-900 max-md:mt-10">
+    <div className="flex flex-col px-1 pt-1 mx-auto w-full border border-gray-200 border-solid rounded-[46px] max-md:mt-6 max-md:max-w-full bg-zinc-100">
+    <div className='bg-white rounded-[46px]'>
     <Tabs defaultValue="Personal">
-<TabsList className="grid w-[60%] grid-cols-3 bg-gray-300 h-16 rounded-full ">
+<TabsList className="grid w-[60%] grid-cols-3  h-16 rounded-full mt-10 mb-16 mx-10 my-10">
   <TabsTrigger value="Personal" className="rounded-full h-full text-black">
     Personal
   </TabsTrigger>
@@ -35,9 +35,9 @@ const PackageCard: React.FC<PackageProps> = ({ package: pkg }) => {
 <TabsContent value="Group">
   <ListBenfits pkg={pkg} type={2} />
 </TabsContent>
-</Tabs>
-
+    </Tabs>
     </div>
+
   </div>
   );
 };

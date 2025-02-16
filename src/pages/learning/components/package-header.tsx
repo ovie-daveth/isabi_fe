@@ -34,7 +34,7 @@ const Header: React.FC = () => {
     setActive(id)
   }
   return (
-    <div className="flex flex-col items-start px-16 w-full max-md:px-5 max-md:max-w-full">
+    <div className="px-32 flex flex-col items-start  w-full max-md:px-5 max-md:max-w-full">
       <div className="flex flex-wrap gap-10 justify-between items-center self-stretch w-full max-md:max-w-full">
         <div className="flex flex-wrap gap-16 items-center self-stretch my-auto min-w-[240px] max-md:max-w-full">
           <div className="flex gap-3 items-center self-stretch my-auto">
