@@ -1,5 +1,9 @@
 import React from 'react';
 import CircularProgress from './progress';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/context/store';
+import { setOpenCourse, setSubject } from '@/context/slices/navigation-slice';
+import { useNavigate } from 'react-router-dom';
 
 interface SubjectCardProps {
   title: string;
@@ -8,8 +12,17 @@ interface SubjectCardProps {
 }
 
 export const SubjectCard: React.FC<SubjectCardProps> = ({ title, description, imageSrc }) => {
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleNavigation = (name: string) => {
+    dispatch(setOpenCourse(true))
+    dispatch(setSubject(name))
+    navigate(`/study-package/${name}`)
+  }
   return (
-    <div className="flex overflow-hidden relative flex-col flex-1 shrink gap-2.5 items-start self-stretch p-6 my-auto rounded-3xl xl:aspect-[3.007] basis-0 min-w-[240px] max-md:px-5">
+    <div onClick={() => handleNavigation(title)} className="flex overflow-hidden relative flex-col flex-1 shrink gap-2.5 items-start cursor-pointer self-stretch p-6 my-auto rounded-3xl xl:aspect-[3.007] basis-0 min-w-[240px] max-md:px-5">
       <img
         loading="lazy"
         src={imageSrc}

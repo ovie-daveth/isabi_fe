@@ -8,6 +8,7 @@ import ResetOTPpage from './pages/auth/resetotp';
 import NewPassword from './pages/auth/new-password';
 import LandingPage from './pages/landing/page';
 import StudyPackages from './pages/learning/study-packages/page';
+import SingleSubject from './pages/learning/singleSubject/page';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
 
       {/* Study package */}
       <Route path="/study-package" element={<StudyPackages />} />
+      <Route path="/study-package/:subject" element={<SingleSubject />} />
     </Routes>
   );
 }

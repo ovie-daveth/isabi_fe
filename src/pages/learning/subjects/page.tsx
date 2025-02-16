@@ -45,14 +45,9 @@ export const StartJourney: React.FC = () => {
               Lessons curated specially for you
             </h2>
           </div>
-          <div className="flex flex-wrap gap-7 items-center mt-5 w-full text-black max-md:max-w-full">
-            {subjects.slice(0, 3).map((subject, index) => (
+          <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-7 items-center mt-5 w-full text-black max-md:max-w-full">
+            {subjects.map((subject, index) => (
               <SubjectCard key={index} {...subject} />
-            ))}
-          </div>
-          <div className="flex flex-wrap gap-7 items-center mt-5 max-w-full text-black w-[855px]">
-            {subjects.slice(3).map((subject, index) => (
-              <SubjectCard key={index + 3} {...subject} />
             ))}
           </div>
         </div>
