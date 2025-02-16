@@ -1,0 +1,50 @@
+import React from 'react'
+import CustomButton from '@/components/atoms/button'
+import FeatureList from '@/pages/landing/featuredlist'
+import { StudyPackage } from '../../interface'
+
+
+const ListBenfits = ({pkg, type}: {pkg: StudyPackage, type: number}) => {
+
+    const handleGetStarted = (title: string) => {
+
+    }
+  return (
+    <div className="flex flex-col px-2.5 pt-2.5 pb-16 mx-auto w-full border border-gray-200 border-solid bg-neutral-100 rounded-[46px] max-md:mt-6 max-md:max-w-full">
+              <div className="px-10 py-11 w-full bg-white rounded-[40px] max-md:px-5 max-md:max-w-full">
+                <div className="flex gap-5 max-md:flex-col">
+                  <div className="flex flex-col w-full max-md:ml-0 max-md:w-full ">
+                    <div className="flex flex-col w-full font-medium leading-none text-neutral-900 max-md:mt-10">
+                      <div className="self-start mt-10 text-4xl font-semibold tracking-tighter">
+                        {pkg.title}
+                      </div>
+                      <div className="mt-6 text-lg tracking-tight leading-snug">
+                        {pkg.group[type].description}
+                      </div>
+                      <div className='flex items-center justify-between w-full mt-16'>
+                        <div className="w-[50%] ">
+                            <CustomButton fn={() => handleGetStarted(pkg.title)} title={"Get Started"} variant={pkg.isComingSoon ? "locked" : "primary"} />
+                        </div>
+                        {
+                            pkg.isComingSoon ? <h1 className='text-primary/50 font-medium md:text-lg text-sm'>Coming soon</h1> :  <div className="flex flex-col ml-5 w-[36%] max-md:ml-0 max-md:w-full ">
+                            <div className="flex gap-0.5 self-stretch my-auto whitespace-nowrap text-neutral-900 max-md:mt-10">
+                              <div className="grow text-3xl font-semibold tracking-tighter leading-none text-right">
+                              {pkg.group[type].price}
+                              </div>
+                              <div className="self-start mt-4 text-lg font-medium tracking-tight leading-none">
+                                /month
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <FeatureList features={pkg.group[type].features} title={pkg.group[type].name}  />
+            </div>
+  )
+}
+
+export default ListBenfits
