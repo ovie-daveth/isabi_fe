@@ -1,24 +1,22 @@
 import React from 'react';
 
-interface Feature {
-  text: string;
-}
 
-const FeatureList: React.FC = ({title}: {title: string}) => {
+const FeatureList = ({title, features}: {title: string, features: string[]}) => {
 
-  const features: Feature[] = [
-    { text: "Advanced animations" },
-    { text: "CMS integration for blogs, portfolios, or dynamic content" },
-    { text: "Up to 10 pages" },
-    { text: "SEO-friendly structure" },
-    { text: "Priority email support for faster communication" }
+  console.log('name', title)
+  const feature = [
+    "Advanced animations",
+    "CMS integration for blogs, portfolios, or dynamic content",
+    "Up to 10 pages",
+    "SEO-friendly structure",
+    "Priority email support for faster communication"
   ];
 
   
   return (
     <div className="flex flex-col self-center mt-12 max-w-full font-semibold leading-none text-neutral-900 w-[428px] max-md:mt-10">
       <div className="text-sm tracking-tighter max-md:max-w-full">
-        Everything in the {title === "Standard" ? "Standard" : title === "Pro" ? "PRO" : "Premium"} Plan, plus:
+        Everything in the {title} Plan, plus:
       </div>
       <div className="flex flex-col items-start mt-6 w-full text-base tracking-tighter max-md:max-w-full">
         {features.map((feature, index) => (
@@ -29,7 +27,7 @@ const FeatureList: React.FC = ({title}: {title: string}) => {
               alt=""
               className="object-contain shrink-0 w-5 aspect-square"
             />
-            <div className="flex-auto">{feature.text}</div>
+            <div className="flex-auto">{feature ?? feature}</div>
           </div>
         ))}
       </div>
