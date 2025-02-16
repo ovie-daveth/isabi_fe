@@ -1,66 +1,57 @@
-import React from 'react';
-import PackageCard from './components/packagecard';
-import Header from '../components/package-header';
+import { useSelector } from "react-redux";
+import { RootState } from "@/context/store";
+import PackageCard from "./components/packagecard";
+import StudentLayout from "../_layout";
+import { StudyPackage } from "../interface";
 
-interface StudyPackage {
-  title: string;
-  description: string;
-  price?: string;
-  isComingSoon?: boolean;
-  features: string[];
-}
+const generateStudyPackages = (
+  titles: string[],
+  groupNames: string[],
+  basePrice: number,
+  isComingSoonTitles: string[] = []
+): StudyPackage[] => {
+  return titles.map((title, index) => ({
+    title,
+    group: groupNames.map((name, i) => ({
+      name,
+      description: `Small projects or ${name} portfolios`,
+      price: `₦${(basePrice * (i + 1)).toLocaleString()}`,
+      features: [
+        "Advanced animations",
+        "CMS integration",
+        `Up to ${10 + i * 2} pages`,
+        "SEO-friendly structure",
+        "Priority email support",
+      ],
+    })),
+    isComingSoon: isComingSoonTitles.includes(title) ? true : undefined,
+  }));
+};
 
-const studyPackages: StudyPackage[] = [
-  {
-    title: "SSCE Package",
-    description: "Small projects or personal portfolios",
-    price: "₦4,000",
-    features: [
-      "Advanced animations",
-      "CMS integration for blogs, portfolios",
-      "Up to 10 pages",
-      "SEO-friendly structure",
-      "Priority email support for faster communication"
-    ]
-  },
-  {
-    title: "Nursing Package",
-    description: "Small projects or personal portfolios",
-    isComingSoon: true,
-    features: [
-      "Advanced animations",
-      "CMS integration for blogs, portfolios",
-      "Up to 10 pages",
-      "SEO-friendly structure",
-      "Priority email support for faster communication"
-    ]
-  },
-  {
-    title: "Complete Package",
-    description: "Small projects or personal portfolios",
-    isComingSoon: true,
-    features: [
-      "Advanced animations",
-      "CMS integration for blogs, portfolios",
-      "Up to 10 pages",
-      "SEO-friendly structure",
-      "Priority email support for faster communication"
-    ]
-  }
-];
+const studyPackages: StudyPackage[] = generateStudyPackages(
+  ["SSCE Package", "Nursing Package", "Complete Package"],
+  ["personal", "Duo", "Group"],
+  4000,
+  ["Nursing Package", "Complete Package"]
+);
 
-const StudyPackages: React.FC = () => {
+const StudyPackages = () => {
+  const activeTab = useSelector((state: RootState) => state.navigation.activeTab);
+
   return (
-    <div className="flex overflow-hidden flex-col pt-12 bg-white">
-      <Header />
+    <StudentLayout>
       <div className="overflow-hidden px-16 pt-12 pb-28 w-full bg-zinc-100 max-md:px-5 max-md:pb-24 max-md:max-w-full">
-        <div className="flex gap-5 max-md:flex-col">
-          {studyPackages.map((pkg, index) => (
-            <PackageCard key={index} package={pkg} />
-          ))}
-        </div>
+        {activeTab === 1 && (
+          <div className="flex gap-5 max-md:flex-col">
+            {studyPackages.map((pkg, index) => (
+              <PackageCard key={index} package={pkg} />
+            ))}
+          </div>
+        )}
+        {activeTab === 2 && <h2>My Subjects - Coming Soon</h2>}
+        {activeTab === 3 && <h2>Study History - Coming Soon</h2>}
       </div>
-    </div>
+    </StudentLayout>
   );
 };
 

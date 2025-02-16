@@ -6,6 +6,7 @@ import notififyIcon from "@/assets/svg-icon.png"
 
 import stationary from "@/assets/stationary.png"
 import saly from "@/assets/saly-28.png"
+import Navigation from './navigation';
 
 const menus = [
   {
@@ -27,7 +28,7 @@ const menus = [
 ]
 const Header: React.FC = () => {
   const [active, setActive] = useState(1)
-  const [courseRegistered, setCourseRegistered] = useState(true)
+  const [courseRegistered, setCourseRegistered] = useState(false)
 
   const handleNavigation = (id: number) => {
     setActive(id)
@@ -92,7 +93,7 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap gap-5 justify-between mt-12 w-full text-black max-w-[1250px] max-md:mt-10 max-md:max-w-full">
+      <div className="flex flex-wrap gap-5 justify-between mt-12 w-full text-black xl:pr-20 max-md:mt-10 max-md:max-w-full">
         <div className="flex flex-col self-start mt-6 max-md:max-w-full">
           <h1 className="text-5xl font-semibold tracking-tighter max-md:max-w-full max-md:text-4xl">
             Good Morning, Clara!
@@ -108,17 +109,7 @@ const Header: React.FC = () => {
           alt="Decorative illustration"
         />
       </div>
-      <div className="flex flex-wrap gap-6 items-center mt-2.5 text-base font-semibold tracking-tight text-black max-md:max-w-full">
-        <button className="overflow-hidden gap-2.5 self-stretch px-8 py-5 my-auto font-bold text-black rounded-2xl bg-neutral-50 max-md:px-5">
-          Study Packages
-        </button>
-        <button className="overflow-hidden gap-2.5 self-stretch px-8 py-5 my-auto rounded-2xl max-md:px-5">
-          My Subjects
-        </button>
-        <button className="overflow-hidden gap-2.5 self-stretch px-8 py-5 my-auto rounded-2xl max-md:px-5">
-          Study History
-        </button>
-      </div>
+      <Navigation />
     </div>
   );
 };
