@@ -12,7 +12,7 @@ const ToastMessage = ({ loadingMessage, setOpen, title, openToast }: {setOpen: D
     if(title.toLowerCase() === "registered"){
       navigate("/auth/login")
     } else if (title.toLowerCase() === "otp sent"){
-      navigate("/auth/otp")
+      navigate("/auth/otp/email-verify")
       setOpen({
         isOpen: false,
         type: "success"
@@ -24,7 +24,7 @@ const ToastMessage = ({ loadingMessage, setOpen, title, openToast }: {setOpen: D
         type: "success"
       })
     } else if (title.toLowerCase() === "reset otp sent"){
-      navigate("/auth/reset-otp")
+      navigate("/auth/otp/verify-login")
       setOpen({
         isOpen: false,
         type: "success"

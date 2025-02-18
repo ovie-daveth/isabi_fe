@@ -1,3 +1,15 @@
+import Cookies from "js-cookie";
+
+// Get a cookie
+export const token = Cookies.get("loginVerificationToken");
+
+// Set a cookie
+// Cookies.set("loginVerificationToken", "your-token-here", { expires: 7, path: "" });
+
+// // Delete a cookie
+// Cookies.remove("loginVerificationToken");
+
+
 export const getCookie = (name: string): string | null => {
     const cookies = document.cookie.split("; ");
     for (let cookie of cookies) {

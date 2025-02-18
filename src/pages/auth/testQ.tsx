@@ -6,7 +6,7 @@ import CustomButton from "@/components/atoms/button";
 import q2 from "@/assets/q2.png"
 import Questions from "./components/questions";
 import { toastProp } from "./interface/types";
-import { getCookie } from "@/lib/helpers";
+import { getCookie } from "@/lib/helpers"; 
 
 
 const TestQuestion = () => {

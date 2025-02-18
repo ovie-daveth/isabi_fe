@@ -23,7 +23,6 @@ export class AuthService {
 
     async VerifyEmail(token: { verificationCode: string, token: string }) {
         let url = `${this.baseUrl}/verify-email`;
-        console.log("Headers before request:", this.axiosInstance.defaults.headers);
         
         const response = await this.axiosInstance.post<AuthResponse>(url, token, {
             withCredentials: true, // Explicitly ensure cookies are sent
@@ -44,6 +43,17 @@ export class AuthService {
         let url = `${this.baseUrl}/login`;
         const response = await this.axiosInstance.post<AuthResponse>(url, data)
         return response.data
+    }
+
+    
+    async VerifyLogin(token: { verificationCode: string }) {
+        let url = `${this.baseUrl}/verify-login`;
+        
+        const response = await this.axiosInstance.post<AuthResponse>(url, token, {
+            withCredentials: true, // Explicitly ensure cookies are sent
+        });
+        
+        return response.data;
     }
 
     async ResendEmailVerification(data: {email: string}){

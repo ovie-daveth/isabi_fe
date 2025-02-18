@@ -19,6 +19,7 @@ import CustomButton from "@/components/atoms/button";
 import { AuthService } from "@/api/auth";
 import { getToken, setToken } from "@/lib/helpers";
 import { toastProp } from "./interface/types";
+import { useParams } from "react-router-dom";
 
 const formSchema = z.object({
   otp: z.string().min(6, {
@@ -30,12 +31,19 @@ const OTPpage = () => {
   const navigate = useNavigate()
   const authService = new AuthService();
 
+  const { id } = useParams<{ id: string }>();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       otp: "",
     },
   });
+
+
+useEffect(() => {
+  localStorage.setItem("login_param", id)
+}, [id])
 
   
   const [loading, setLoading] = useState(false)

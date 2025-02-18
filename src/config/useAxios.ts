@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
-import { getToken, getUserId } from "@/lib/helpers";
+import { getCookie, getToken, getUserId } from "@/lib/helpers";
 
 // Create an Axios instance
 const api = axios.create({
@@ -13,6 +13,7 @@ const api = axios.create({
 
 console.log("url", import.meta.env.VITE_API_URL)
 console.log("token, userId", getToken(), getUserId())
+console.log("cookies", getCookie("loginVerificationToken"))
 
 // Request Interceptor to attach Bearer Token
 api.interceptors.request.use(
