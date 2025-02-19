@@ -30,7 +30,9 @@ const ResetPassword = () => {
 
   const navigate = useNavigate()
 
-  const [openToast, setOtpToast] = useState<toastProp>()
+  const [openToast, setOtpToast] = useState<toastProp>({
+    isOpen: false
+  })
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

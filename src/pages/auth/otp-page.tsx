@@ -3,7 +3,6 @@ import { MdArrowOutward } from "react-icons/md";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -14,10 +13,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+//import {  useNavigate } from "react-router-dom";
 import CustomButton from "@/components/atoms/button";
 import { AuthService } from "@/api/auth";
-import { getToken, setToken } from "@/lib/helpers";
+import { getToken } from "@/lib/helpers";
 import { toastProp } from "./interface/types";
 import { useParams } from "react-router-dom";
 
@@ -28,10 +27,10 @@ const formSchema = z.object({
 });
 
 const OTPpage = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const authService = new AuthService();
 
-  const { id } = useParams<{ id: string }>();
+  const { id }  = useParams<{ id: string }>();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,13 +40,15 @@ const OTPpage = () => {
   });
 
 
-useEffect(() => {
-  localStorage.setItem("login_param", id)
-}, [id])
+// useEffect(() => {
+//    localStorage.setItem("login_param", id);
+// }, [id])
 
   
   const [loading, setLoading] = useState(false)
-  const [openToast, setOpenToast] = useState<toastProp>()
+  const [openToast, setOpenToast] = useState<toastProp>({
+    isOpen: false
+  })
   const [message, setMessage] = useState("")
   const [toastTitle, setToastTitle] = useState("")
 
@@ -77,8 +78,8 @@ useEffect(() => {
         type: "success"
       });
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+  
     setMessage(error.message)
     setOpenToast({
       isOpen: true,
@@ -90,8 +91,8 @@ useEffect(() => {
 
   const handleResendOTP = async() => {
 
-    const request = {
-      email: localStorage.getItem("email")
+    const request: {email: string} = {
+      email: localStorage.getItem("email") as string
     }
     const response = await authService.ResendEmailVerification(request)
     if(response){

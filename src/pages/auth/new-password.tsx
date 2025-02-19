@@ -1,12 +1,9 @@
-import { MdArrowOutward } from "react-icons/md";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -14,12 +11,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { useNavigate } from "react-router-dom";
-import LoadingState from "./components/loadingState";
-import ResetLayout from "./resetLayout";
+//import LoadingState from "./components/loadingState";
 import CustomButton from "@/components/atoms/button";
 import { toastProp } from "./interface/types";
+import ResetLayout from "./resetLayout";
 
 const formSchema = z.object({
   password: z.string().min(6, {
@@ -41,7 +36,7 @@ const formSchema = z.object({
 
 const NewPassword = () => {
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,7 +46,9 @@ const NewPassword = () => {
   });
 
   const [loading, setLoading] = useState(false)
-  const [openToast, setOpenToast] = useState<toastProp>()
+  const [openToast, setOpenToast] = useState<toastProp>({
+    isOpen: false
+  })
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {

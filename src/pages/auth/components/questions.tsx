@@ -1,4 +1,4 @@
-import React, { useState, useRef, Dispatch, SetStateAction } from "react";
+import { useState, useRef, Dispatch, SetStateAction } from "react";
 import q1 from "@/assets/q1.png";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,9 +7,7 @@ import {
   studyGoals,
 } from "@/constant/onboard";
 import CustomButton from "@/components/atoms/button";
-import { Input } from "@/components/ui/input";
 import PhoneInput from "./phone";
-import { useAxios } from "@/config/useAxios";
 import { AuthService } from "@/api/auth";
 import { getUserId } from "@/lib/helpers";
 import { toastProp } from "../interface/types";
@@ -123,7 +121,7 @@ const Questions = ({
             type: "success"
         })
     }
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false)
       setMessage(error?.message)
       setOpenToast({

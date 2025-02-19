@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import  { Dispatch, SetStateAction } from 'react'
 import pattern from "@/assets/pattern4.png";
 import { Button } from '@/components/ui/button';
 import { GrClose } from 'react-icons/gr';

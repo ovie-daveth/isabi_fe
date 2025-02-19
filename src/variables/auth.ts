@@ -13,8 +13,8 @@ export interface googleRequest {
 export interface AuthResponse {
     success: boolean,
     message: string,
-    token?: string
-    userId?: string
+    token: string
+    userId: string
   }
 
 export interface loginRequest {

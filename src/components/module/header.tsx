@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Logo from '../atoms/logo'
 import { Button } from '../ui/button'
 import CustomButton from '../atoms/button'
-import { Menu } from 'lucide-react'
-import { GrClose } from 'react-icons/gr'
 import { useNavigate } from 'react-router-dom'
 
 const menus = [
@@ -33,12 +31,12 @@ const Header = () => {
   const navigate = useNavigate()
   
   const [active, setActive] = useState(1)
-  const [isOpen, setOpen] = useState(false)
+
   const [openMenu, setOpenMenu] = useState(false)
 
   const [selectedMenu, setSelectedMenu] = useState(menus[0]); // Default to 'Home'
 
-  const handleMenuIDUpdate = (id) => {
+  const handleMenuIDUpdate = (id: number) => {
     const newMenu = menus.find((item) => item.id === id);
     if (newMenu) {
       setSelectedMenu(newMenu);

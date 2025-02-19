@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import CustomButton from "@/components/atoms/button";
 import { AuthService } from "@/api/auth";
 import { AuthResponse, SignUpRequest } from "@/variables/auth";
@@ -47,7 +47,7 @@ const formSchema = z.object({
 
 const SignUp = () => {
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const authService = new AuthService();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -61,7 +61,9 @@ const SignUp = () => {
   });
 
   const [loading, setLoading] = useState(false)
-  const [openToast, setOpenToast] = useState<toastProp>()
+  const [openToast, setOpenToast] = useState<toastProp>({
+    isOpen: false
+  })
   const [message, setMessage] = useState("")
 
   // 2. Define a submit handler.
@@ -100,7 +102,7 @@ const SignUp = () => {
           type: "success"
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       setMessage(error?.response.data.message)
       setLoading(false);

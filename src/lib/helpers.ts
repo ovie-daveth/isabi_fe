@@ -27,7 +27,7 @@ export const getCookie = (name: string): string | null => {
   }
 
   export const getUserId = () => {
-    const data = localStorage.getItem("userId")
+    const data: string = localStorage.getItem("userId") as string
     return data
   }
 
@@ -37,7 +37,7 @@ export const getCookie = (name: string): string | null => {
   }
 
   export const getToken = () => {
-    const data = localStorage.getItem("token")
+    const data: string = localStorage.getItem("token") as string
     return data
   }
 

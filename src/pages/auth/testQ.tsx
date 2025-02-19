@@ -13,7 +13,9 @@ const TestQuestion = () => {
 
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
-  const [openToast, setOpenToast] = useState<toastProp>()
+  const [openToast, setOpenToast] = useState<toastProp>({
+    isOpen: false
+  })
   const [progress, setProgress] = useState(1)
   const [message, setMessage] = useState("")
 

@@ -8,7 +8,6 @@ import BG from "@/assets/BG.png";
 
 import google from "@/assets/google.svg";
 import apple from "@/assets/apple.svg";
-import { MdNoFlash } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import { GrCheckmark } from "react-icons/gr";import LoadingState from "./components/loadingState";
 import ToastMessage from "./components/toastMessage";
@@ -70,10 +69,10 @@ const AuthLayout = ({
   return (
     <div className={`${style} min-h-screen w-full pt-28`}>
       {
-          loading && <LoadingState setOpen={setOpen} loadingMessage={loadingMessage} />
+          loading && <LoadingState setOpen={setOpen} loadingMessage={loadingMessage ?? ""} />
       }
       {
-        openToast?.isOpen && <ToastMessage openToast={openToast} title={toastTitle} setOpen={setOpenToast} loadingMessage={toastMessage} />
+        openToast?.isOpen && <ToastMessage openToast={openToast} title={toastTitle ?? ""} setOpen={setOpenToast ?? (() => {})} loadingMessage={toastMessage ?? ""} />
       }
       <div className="flex items-start xl:w-[70%] mx-auto justify-between xl:pl-28 lg:px-0 md:w-[90%] w-full md:px-0 px-5 flex-col md:flex-row ">
         <div className="xl:w-[40%] lg:w-[55%] md:w-[50%] ">

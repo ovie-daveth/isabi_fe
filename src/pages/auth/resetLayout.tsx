@@ -36,10 +36,10 @@ const ResetLayout = ({
   return (
     <div className={`${style} min-h-screen w-full pt-28`}>
       {
-          loading && <LoadingState setOpen={setOpen} loadingMessage={loadingMessage} />
+          loading && loadingMessage && <LoadingState setOpen={setOpen} loadingMessage={loadingMessage} />
       }
       {
-        openToast.isOpen && <ToastMessage title={toastTitle} setOpen={setOpenToast} loadingMessage={toastMessage} openToast={openToast} />
+        openToast?.isOpen && <ToastMessage title={toastTitle ?? ""} setOpen={setOpenToast ?? (() => {})} loadingMessage={toastMessage ?? ""} openToast={openToast} />
       }
       <div className="flex items-start xl:w-[70%] mx-auto justify-between xl:pl-28 lg:px-0 md:w-[90%] w-full md:px-0 px-5 flex-col md:flex-row ">
         <div className="xl:w-[40%] lg:w-[55%] md:w-[50%] ">
