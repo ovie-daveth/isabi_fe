@@ -6,11 +6,7 @@
 @tailwind utilities;
 
 
-
-
 *, h1, h2, h3, h4, h5, p, a, span {
-  margin: 0;
-  padding: 0;
   font-family: "Inter Tight", serif;
   font-optical-sizing: auto;
   font-style: normal;

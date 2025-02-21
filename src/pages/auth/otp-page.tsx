@@ -19,6 +19,7 @@ import { AuthService } from "@/api/auth";
 import { getToken } from "@/lib/helpers";
 import { toastProp } from "./interface/types";
 import { useParams } from "react-router-dom";
+import { AuthResponse } from "@/variables/auth";
 
 const formSchema = z.object({
   otp: z.string().min(6, {
@@ -71,7 +72,7 @@ const OTPpage = () => {
       logoutOtherSession:"logout_other_device"
     }
   try {
-     const response = id === "email-verify" ? await authService.VerifyEmail(request_email) : await authService.VerifyLogin(request_login);
+     const response = (id === "email-verify" ? await authService.VerifyEmail(request_email) : await authService.VerifyLogin(request_login)) as AuthResponse
     if (response) {
       console.log(response);
        console.log("signup", response);
@@ -82,13 +83,7 @@ const OTPpage = () => {
         isOpen: true,
         type: "success"
       });
-    } else {
-      setMessage(response.message)
-      setOpenToast({
-        isOpen: true,
-        type: "error"
-      })
-    }
+    } 
   } catch (error: any) {
   
     setMessage(error.message)
