@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import stationary from "@/assets/stationary.png"
-import saly from "@/assets/saly-28.png"
+import saly from "@/assets/saly28.png"
 import Navigation from './navigation';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/context/store';

@@ -6,9 +6,9 @@ import TopHeader from "../components/topheader";
 import { SubjectCard } from "../subjects/components/subjectCard";
 import { useNavigate } from "react-router-dom";
 import { TopicCard } from "./components/topicCard";
-import saly1 from "@/assets/Saly-20.png"
-import saly2 from "@/assets/Saly-43.png"
-import saly3 from "@/assets/Saly-28.png"
+import saly1 from "@/assets/saly20.png"
+import saly2 from "@/assets/saly43.png"
+import saly3 from "@/assets/saly28.png"
 
 const subjects = [
   {

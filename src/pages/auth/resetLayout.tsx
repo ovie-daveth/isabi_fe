@@ -1,8 +1,8 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import logo from "@/assets/iSabiBook.png";
 import logoIcon from "@/assets/image.png";
-import reset1 from "@/assets/3triangle in 1 angle 2.png";
-import reset2 from "../../assets/Stretched sphere with circle in middle angle 1.png";
+import reset1 from "@/assets/triangle.png";
+import reset2 from "../../assets/sphere.png";
 import reset3 from "@/assets/Triangle grid sphere angle 2.png";
 
 import BG from "@/assets/BG.png";
