@@ -19,6 +19,7 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+    base: '/isabi_fe/',
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
