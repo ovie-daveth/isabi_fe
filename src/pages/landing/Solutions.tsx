@@ -1,5 +1,5 @@
 import React from "react";
-import SolutionCard from "./SolutionCard";
+import SolutionCard from "./solution-card";
 
 const solutionsData = [
   {
