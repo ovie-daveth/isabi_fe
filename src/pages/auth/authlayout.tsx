@@ -1,10 +1,10 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
-import img1 from "@/assets/Ellipse 21.png";
-import img2 from "@/assets/Ellipse 22.png";
-import img3 from "@/assets/Ellipse 23.png";
-import img4 from "@/assets/Ellipse 24@2x.png";
+import img1 from "@/assets/ellipse21.png";
+import img2 from "@/assets/ellipse22.png";
+import img3 from "@/assets/ellipse23.png";
+import img4 from "@/assets/ellipse24.png";
 
-import BG from "@/assets/BG.png";
+import BG from "@/assets/bg.png";
 
 import google from "@/assets/google.svg";
 import apple from "@/assets/apple.svg";

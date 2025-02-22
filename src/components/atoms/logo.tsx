@@ -1,4 +1,4 @@
-import logo from "@/assets/iSabiBook.png";
+import logo from "@/assets/isabi.png";
 import logoIcon from "@/assets/image.png";
 
 const Logo = () => {
