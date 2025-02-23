@@ -5,9 +5,9 @@ import reset1 from "@/assets/triangle.png";
 import reset2 from "../../assets/sphere.png";
 import reset3 from "@/assets/triangle.png";
 
-import BG from "@/assets/BG.png";
+import BG from "@/assets/bg.png";
 
-import LoadingState from "./components/loadingState";
+import LoadingState from "./components/loading-state";
 import ToastMessage from "./components/toast-message";
 import { toastProp } from "./interface/types";
 ;
