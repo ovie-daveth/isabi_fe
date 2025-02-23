@@ -1,9 +1,3 @@
-# services:
-#   - type: web
-#     name: isabi-fe
-#     buildCommand: npm install && npm run build
-#     staticPublishPath: dist  # Ensure this matches your Vite output directory
-
 services:
   - type: web
     name: isabi-fe
