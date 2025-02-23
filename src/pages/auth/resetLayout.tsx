@@ -5,7 +5,7 @@ import reset1 from "@/assets/triangle.png";
 import reset2 from "../../assets/sphere.png";
 import reset3 from "@/assets/triangle.png";
 
-import BG from "@/assets/bg.png";
+import bg from "@/assets/bg.png";
 
 import LoadingState from "./components/loading-state";
 import ToastMessage from "./components/toast-message";
@@ -69,7 +69,7 @@ const ResetLayout = ({
             {children}
           </div>
               <div className="mt-10">
-                <img src={BG} alt="" />
+                <img src={bg} alt="" />
               </div>
             
         </div>
