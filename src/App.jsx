@@ -2,14 +2,12 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import SignUp from './pages/auth/signup';
 import SignIn from "./pages/auth/login";
 import OTPpage from './pages/auth/otp-page';
-import TestQuestion from './pages/auth/testQ';
+import TestQuestion from './pages/auth/test-q';
 import ResetPassword from './pages/auth/resetpassword';
-import ResetOTPpage from './pages/auth/resetotp';
 import NewPassword from './pages/auth/new-password';
 import LandingPage from './pages/landing/page';
 import StudyPackages from './pages/learning/study-packages/page';
 import SingleSubject from './pages/learning/singleSubject/page';
-import { token } from './lib/helpers';
 
 function App() {
 

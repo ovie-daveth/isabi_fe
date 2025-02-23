@@ -1,7 +1,7 @@
 import React from 'react';
-import { SubjectCard } from './components/subjectCard';
-import { LeagueHeader } from './components/leagueHeader';
-import { LeagueCard } from './components/leagueCard';
+import { SubjectCard } from './components/subject-card';
+import { LeagueHeader } from './components/league-header';
+import { LeagueCard } from './components/league-card';
 
 interface Subject {
   title: string;

@@ -1,8 +1,6 @@
 import AuthLayout from "./authlayout";
 import { useEffect, useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
-import CustomButton from "@/components/atoms/button";
 import q2 from "@/assets/q2.png"
 import Questions from "./components/questions";
 import { toastProp } from "./interface/types";
@@ -11,7 +9,6 @@ import { getCookie } from "@/lib/helpers";
 
 const TestQuestion = () => {
 
-  const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [openToast, setOpenToast] = useState<toastProp>({
     isOpen: false
