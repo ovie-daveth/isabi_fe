@@ -7,7 +7,7 @@ import { getCookie, getToken } from "@/lib/helpers"; // Ensure getCookie() is co
 axios.defaults.withCredentials = true;
 
 const api = axios.create({
-  baseURL: "/api" ,
+  baseURL: import.meta.env.VITE_NODE_ENV === "development" ? "/api" : import.meta.env.VITE_API_BASE_URL ,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",

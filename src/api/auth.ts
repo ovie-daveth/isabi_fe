@@ -10,7 +10,7 @@ export class AuthService {
     private axiosInstance: AxiosInstance;
 
     constructor(){
-        this.baseUrl = "/auth"
+        this.baseUrl = import.meta.env.VITE_NODE_ENV === "development" ? "/auth" : '/api/auth'
         this.axiosInstance = useAxios()
     }
 

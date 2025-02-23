@@ -19,6 +19,7 @@ export default defineConfig({
     },
   },
   server: { // ✅ Proxy should be inside "server"
+    historyApiFallback: true,
     proxy: {
       "/api": {
         target: "https://isabibook.onrender.com", 
