@@ -5,7 +5,9 @@
 #     staticPublishPath: dist  # Ensure this matches your Vite output directory
 
 services:
-  - type: static
+  - type: web
     name: isabi-fe
+    runtime: node
     buildCommand: npm install && npm run build
-    staticPublishPath: dist  # Ensure this matches your Vite output directory
+    startCommand: npm run preview
+    plan: free
