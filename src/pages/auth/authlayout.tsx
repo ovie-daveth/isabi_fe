@@ -4,13 +4,13 @@ import img2 from "@/assets/ellipse22.png";
 import img3 from "@/assets/ellipse23.png";
 import img4 from "@/assets/ellipse24.png";
 
-import BG from "@/assets/bg.png";
+import bg from "@/assets/bg.png";
 
 import google from "@/assets/google.svg";
 import apple from "@/assets/apple.svg";
 import { Button } from "@/components/ui/button";
 import { GrCheckmark } from "react-icons/gr";import LoadingState from "./components/loadingState";
-import ToastMessage from "./components/toastMessage";
+import ToastMessage from "./components/toast-message";
 import Logo from "@/components/atoms/logo";
 import { toastProp } from "./interface/types";
 import { AuthService } from "@/api/auth";
@@ -133,7 +133,7 @@ const AuthLayout = ({
           {
              title.toLowerCase() === "sign up" && progress === 2 && (
               <div className="mt-10">
-                <img src={BG} alt="" />
+                <img src={bg} alt="" />
               </div>
              )
           }

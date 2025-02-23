@@ -1,6 +1,6 @@
 // api/auth/signup
 
-import { useAxios } from "@/config/useAxios";
+import { useAxios } from "@/config/use-axios";
 import { AuthResponse, googleRequest, loginRequest, onboardRequest, SignUpRequest, UserResponse } from "@/variables/auth";
 import  { AxiosInstance } from "axios";
 
