@@ -11,6 +11,7 @@ export const token = Cookies.get("loginVerificationToken");
 
 
 export const getCookie = (name: string) => {
+  console.log("usplit cookie", document.cookie)
   const cookie = document.cookie
     .split("; ")
     .find((row) => row.startsWith(name + "="));

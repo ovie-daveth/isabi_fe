@@ -1,4 +1,5 @@
 import CustomButton from "@/components/atoms/button";
+import { Input } from "@/components/ui/input";
 import React, { useState } from "react";
 
 const Newsletter: React.FC = () => {
@@ -11,8 +12,8 @@ const Newsletter: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-wrap gap-5 justify-between items-start mt-16 w-full max-w-[1290px] max-md:mt-10 max-md:max-w-full">
-      <div className="self-end mt-6 text-3xl font-semibold tracking-tighter leading-10 text-black ">
+    <div className="flex gap-5 justify-between items-start mt-16  max-md:mt-10 ">
+      <div className="self-end mt-6 text-3xl font-semibold tracking-tighter leading-10 text-black w-[45%]">
         Learn better with iSabiBok, an e-learning platform suited just for you
       </div>
       <form
@@ -25,13 +26,13 @@ const Newsletter: React.FC = () => {
               <label htmlFor="emailInput" className="sr-only">
                 Enter your email
               </label>
-              <input
+              <Input
                 type="email"
                 id="emailInput"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="email@provider.com"
-                className="flex flex-col flex-1 shrink px-5 pt-3.5 pb-4 whitespace-nowrap rounded-2xl basis-0 min-w-[240px] text-stone-600"
+                className=" h-16 border-none text-black placeholder:text-black "
                 required
                 aria-label="Enter your email"
               />

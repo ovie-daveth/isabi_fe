@@ -14,7 +14,7 @@ import { token } from './lib/helpers';
 function App() {
 
 
-  console.log("token cookie", token)
+  console.log("token cookie", document.cookie)
 
   return (
     <Routes>

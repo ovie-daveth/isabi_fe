@@ -7,7 +7,8 @@ import { getCookie, getToken } from "@/lib/helpers"; // Ensure getCookie() is co
 axios.defaults.withCredentials = true;
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL, 
+  baseURL: "/api" ,
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
@@ -18,6 +19,7 @@ api.interceptors.request.use(
   (config) => {
     const token = getToken(); // Token from local storage
     const cookieToken = getCookie("loginVerificationToken"); // Token from cookies
+    console.log("cookies checker", cookieToken)
 
     // Prioritize cookie token if available
     if (cookieToken) {

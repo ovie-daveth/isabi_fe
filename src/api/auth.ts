@@ -10,7 +10,7 @@ export class AuthService {
     private axiosInstance: AxiosInstance;
 
     constructor(){
-        this.baseUrl = "/api/auth"
+        this.baseUrl = "/auth"
         this.axiosInstance = useAxios()
     }
 
@@ -43,14 +43,18 @@ export class AuthService {
     async Login(data: loginRequest){
         let url = `${this.baseUrl}/login`;
         const response = await this.axiosInstance.post<AuthResponse>(url, data)
+        console.log("response", response)
         return response.data
     }
 
-    
+      
     async VerifyLogin(token: { verificationCode: string }) {
         let url = `${this.baseUrl}/verify-login`;   
-        const response = await this.axiosInstance.post<AuthResponse>(url, token);       
-        return response.data;
+        const response =  this.axiosInstance.post<AuthResponse>(url, token, {
+            withCredentials: true,
+        }); 
+        //   console.log("headers", response.headers)   
+        return response;
     }
 
     async ResendEmailVerification(data: {email: string}){
