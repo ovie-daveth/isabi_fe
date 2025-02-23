@@ -7,7 +7,7 @@ import reset3 from "@/assets/triangle.png";
 
 import BG from "@/assets/BG.png";
 
-import LoadingState from "./components/loadingState";
+import LoadingState from "./components/loading-state";
 import ToastMessage from "./components/toast-message";
 import { toastProp } from "./interface/types";
 ;

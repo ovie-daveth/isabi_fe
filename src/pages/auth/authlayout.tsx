@@ -9,7 +9,7 @@ import bg from "@/assets/bg.png";
 import google from "@/assets/google.svg";
 import apple from "@/assets/apple.svg";
 import { Button } from "@/components/ui/button";
-import { GrCheckmark } from "react-icons/gr";import LoadingState from "./components/loadingState";
+import { GrCheckmark } from "react-icons/gr";import LoadingState from "./components/loading-state";
 import ToastMessage from "./components/toast-message";
 import Logo from "@/components/atoms/logo";
 import { toastProp } from "./interface/types";
